@@ -49,6 +49,7 @@ class BaseAgent(ABC):
             logger.error(f"Agent {self.name} failed: {str(e)}", exc_info=True)
             return {
                 "status": "error",
+                "data": None,
                 "error": str(e),
                 "fallback_used": False
             }
