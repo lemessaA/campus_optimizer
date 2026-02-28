@@ -1,0 +1,38 @@
+
+# requirements.txt
+# Core
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings>=2.0.0
+
+# Database
+sqlalchemy
+asyncpg
+redis
+alembic
+
+# AI/Agents
+langchain
+langchain-community
+langgraph
+langsmith
+
+# UI
+streamlit
+plotly
+pandas
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+
+# Monitoring
+python-json-logger
+prometheus-client
+
+# Security
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]

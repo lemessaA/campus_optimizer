@@ -4,7 +4,7 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql://user:pass@localhost:5432/campus"
+    DATABASE_URL: str = "postgresql://postgres:qaws@localhost:5432/campus"
     REDIS_URL: str = "redis://localhost:6379"
     
     # Agent Settings
