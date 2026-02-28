@@ -1,0 +1,10 @@
+# Development dependencies
+-r requirements-base.txt
+pytest
+pytest-cov
+black
+isort
+flake8
+mypy
+ipython
+watchdog

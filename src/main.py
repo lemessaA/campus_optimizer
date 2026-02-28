@@ -1,33 +1,32 @@
-# src/main.py
-from fastapi import FastAPI, HTTPException, Depends
+# src/main.py - Simplified version with existing routers/services
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from typing import List
-import uuid
 
-from src.api.routes import router
+from src.api import auth_routes
+from src.api.routes import router as api_router
 from src.api.dependencies import set_supervisor
-from src.core.config import settings
+from src.agents.supervisor_agent import SupervisorAgent
 from src.services.database import init_db, close_db
 from src.services.cache import init_redis, close_redis
-from src.services.monitoring import setup_logging
-from src.agents.supervisor_agent import SupervisorAgent
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Lifespan manager for startup and shutdown events"""
-    # Startup
-    setup_logging()
+    """Initialize services on startup"""
+    
+    # Initialize database
     await init_db()
+    
+    # Initialize Redis
     await init_redis()
     
-    # Initialize and set supervisor agent
+    # Initialize agents
     supervisor = SupervisorAgent()
     set_supervisor(supervisor)
     
     yield
     
-    # Shutdown
+    # Cleanup
     await close_db()
     await close_redis()
 
@@ -39,7 +38,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Add CORS middleware
+# Add middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -49,9 +48,5 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(router, prefix="/api/v1")
-
-@app.get("/health")
-async def health():
-    """Health check endpoint"""
-    return {"status": "healthy", "version": "1.0.0"}
+app.include_router(auth_routes.router, prefix="/api/v1")
+app.include_router(api_router, prefix="/api/v1")

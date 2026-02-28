@@ -182,3 +182,21 @@ async def get_historical_energy(db: AsyncSession, days: int = 30) -> List[Energy
         select(EnergyLog).where(EnergyLog.timestamp >= cutoff)
     )
     return result.scalars().all()
+
+async def get_optimized_schedule(
+    db: AsyncSession,
+    date: Optional[str] = None,
+    building: Optional[str] = None
+) -> List[Classroom]:
+    """Get optimized classroom schedule"""
+    query = select(Classroom).join(ClassroomBooking).join(Course)
+    
+    if building:
+        query = query.where(Classroom.building == building)
+    
+    if date:
+        # Filter by date if provided
+        query = query.where(ClassroomBooking.date == date)
+    
+    result = await db.execute(query)
+    return result.scalars().all()

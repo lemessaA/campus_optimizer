@@ -1,0 +1,10 @@
+# AI dependencies
+-r requirements-base.txt
+langchain
+langgraph
+openai
+scikit-learn
+numpy
+pandas
+transformers
+sentence-transformers

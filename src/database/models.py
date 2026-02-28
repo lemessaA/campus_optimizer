@@ -1,5 +1,5 @@
 # src/database/models.py
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -73,3 +73,39 @@ class EnergyLog(Base):
     consumption = Column(Float, default=0.0)
     savings_kwh = Column(Float, default=0.0)
     action = Column(String, nullable=True)
+# src/database/models.py (add these models)
+
+class SupportTicket(Base):
+    __tablename__ = "support_tickets"
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(String, nullable=False)
+    category = Column(String, nullable=False)
+    description = Column(String, nullable=False)
+    priority = Column(Integer, default=1)  # 1-4: low to urgent
+    status = Column(String, default="open")  # open, in_progress, resolved, closed
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    resolved_at = Column(DateTime, nullable=True)
+    assigned_to = Column(String, nullable=True)
+    context = Column(JSON, nullable=True)  # Store context from other agents
+
+class TicketUpdate(Base):
+    __tablename__ = "ticket_updates"
+    
+    id = Column(Integer, primary_key=True)
+    ticket_id = Column(Integer, ForeignKey("support_tickets.id"))
+    message = Column(String, nullable=False)
+    update_type = Column(String, default="comment")  # comment, status_change, assignment, escalation
+    created_at = Column(DateTime, default=datetime.utcnow)
+    created_by = Column(String, nullable=True)  # user or agent
+
+class SupportFeedback(Base):
+    __tablename__ = "support_feedback"
+    
+    id = Column(Integer, primary_key=True)
+    query_id = Column(String, nullable=True)
+    ticket_id = Column(Integer, ForeignKey("support_tickets.id"), nullable=True)
+    rating = Column(Integer)  # 1-5
+    comment = Column(String, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)

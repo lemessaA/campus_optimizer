@@ -55,17 +55,27 @@ class NotificationAgent(BaseAgent):
     async def store_for_dashboard(self, notification: Dict[str, Any]):
         """Store notification for dashboard retrieval"""
         # In production, this would use Redis pub/sub
-        from src.services.cache import redis_client
-        
-        await redis_client.lpush(
-            "dashboard:notifications",
-            str(notification)
-        )
-        await redis_client.ltrim("dashboard:notifications", 0, 99)  # Keep last 100
+        try:
+            from src.services.cache import redis_client
+            
+            if redis_client:
+                await redis_client.lpush(
+                    "dashboard:notifications",
+                    str(notification)
+                )
+                await redis_client.ltrim("dashboard:notifications", 0, 99)  # Keep last 100
+        except Exception as e:
+            logger.warning(f"Could not store notification in cache: {str(e)}")
     
     async def get_dashboard_notifications(self, limit: int = 20) -> List[Dict]:
         """Get recent notifications for dashboard"""
-        from src.services.cache import redis_client
-        
-        notifications = await redis_client.lrange("dashboard:notifications", 0, limit-1)
-        return [eval(n) for n in notifications] if notifications else []
+        try:
+            from src.services.cache import redis_client
+            
+            if redis_client:
+                notifications = await redis_client.lrange("dashboard:notifications", 0, limit-1)
+                return [eval(n) for n in notifications] if notifications else []
+            return []
+        except Exception as e:
+            logger.warning(f"Could not retrieve notifications from cache: {str(e)}")
+            return []

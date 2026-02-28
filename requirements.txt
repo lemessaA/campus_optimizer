@@ -1,38 +1,353 @@
-
 # requirements.txt
-# Core
+# Campus Operations Optimization System - Complete Production Dependencies
+
+# ============================================================================
+# Core Framework
+# ============================================================================
 fastapi
 uvicorn[standard]
 pydantic
-pydantic-settings>=2.0.0
+pydantic-settings
+python-multipart
+httpx
+requests
 
-# Database
+# ============================================================================
+# Database & Cache
+# ============================================================================
+# PostgreSQL
 sqlalchemy
-asyncpg
-redis
 alembic
+asyncpg
+psycopg2-binary
 
-# AI/Agents
+# Redis
+redis
+aioredis
+
+# ============================================================================
+# AI & Machine Learning
+# ============================================================================
+# LangChain Ecosystem
 langchain
 langchain-community
+langchain-openai
 langgraph
 langsmith
 
-# UI
+# OpenAI
+openai
+tiktoken
+
+# Embeddings & Vector Stores
+sentence-transformers
+chromadb
+faiss-cpu
+
+# Traditional ML
+scikit-learn
+numpy
+pandas
+joblib
+statsmodels
+
+# Deep Learning (optional)
+torch
+transformers
+
+# ============================================================================
+# Data Processing
+# ============================================================================
+python-magic
+python-magic-bin  # Windows
+pillow
+PyPDF2
+python-docx
+openpyxl
+xlrd==2.0.1
+csvkit
+
+# ============================================================================
+# Frontend & Visualization
+# ============================================================================
 streamlit
 plotly
-pandas
+matplotlib
+seaborn
+altair
+bokeh
 
-# Testing
-pytest
-pytest-asyncio
-httpx
+# Dashboard enhancements
+streamlit-option-menu
+streamlit-aggrid
+streamlit-authenticator
+streamlit-chat
 
-# Monitoring
-python-json-logger
-prometheus-client
-
-# Security
-python-multipart
+# ============================================================================
+# Authentication & Security
+# ============================================================================
 python-jose[cryptography]
 passlib[bcrypt]
+python-bcrypt
+authlib
+itsdangerous
+email-validator
+
+# ============================================================================
+# Monitoring & Observability
+# ============================================================================
+prometheus-client
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-fastapi
+opentelemetry-exporter-prometheus
+python-json-logger
+structlog
+loguru
+sentry-sdk
+
+# ============================================================================
+# Rate Limiting & Caching
+# ============================================================================
+slowapi
+cachetools  
+aiocache
+
+# ============================================================================
+# Background Tasks & Async
+# ============================================================================
+celery
+flower
+arq
+dramatiq
+huey
+APScheduler
+
+# ============================================================================
+# WebSocket & Real-time
+# ============================================================================
+websockets
+socket.io
+python-socketio
+
+# ============================================================================
+# File Upload & Processing
+# ============================================================================
+aiofiles
+python-multipart
+filetype
+chardet
+ftfy
+
+# ============================================================================
+# Internationalization
+# ============================================================================
+babel
+fluent.runtime
+python-i18n
+
+# ============================================================================
+# Cloud Services & Integrations
+# ============================================================================
+boto3  # AWS S3
+azure-storage-blob  # Azure
+google-cloud-storage  # GCP
+
+# Webhook integrations
+slack-sdk
+pagerduty
+sendgrid
+twilio
+
+# ============================================================================
+# Testing & Quality Assurance
+# ============================================================================
+pytest
+pytest-asyncio
+pytest-cov
+pytest-mock
+pytest-xdist
+pytest-timeout
+pytest-env
+
+# Testing tools
+factory-boy
+faker
+httpx
+responses
+freezegun
+
+# Code quality
+black
+isort
+flake8
+mypy    
+pylint
+bandit
+safety
+
+# ============================================================================
+# Documentation
+# ============================================================================
+mkdocs
+mkdocs-material 
+pydoc
+sphinx
+sphinx-rtd-theme
+
+# ============================================================================
+# Development Tools
+# ============================================================================
+python-dotenv
+watchdog
+ipython
+jupyter
+debugpy
+httpie
+
+# Database tools
+sqlalchemy-utils
+psycopg2-binary
+alembic-utils
+
+# ============================================================================
+# Production Utilities
+# ============================================================================
+gunicorn
+uvloop
+httptools
+python-rapidjson
+orjson
+ujson
+
+# Compression
+python-snappy
+lz4
+zstandard
+
+# ============================================================================
+# Data Validation
+# ============================================================================
+marshmallow
+cerberus
+voluptuous
+
+# ============================================================================
+# Export & Reporting
+# ============================================================================
+reportlab
+weasyprint
+pdfkit
+xlsxwriter
+tabulate
+prettytable
+
+# ============================================================================
+# API Clients & SDKs
+# ============================================================================
+# LMS Integration
+canvasapi
+blackboard-sdk
+
+# Building Management
+bacpypes
+modbus-tk
+
+# IoT & Sensors
+paho-mqtt
+influxdb-client
+
+# ============================================================================
+# Natural Language Processing (for Support Agent)
+# ============================================================================
+nltk
+spacy
+textblob
+vaderSentiment
+transformers
+
+# ============================================================================
+# Time Series & Forecasting
+# ============================================================================
+prophet
+pmdarima==2.0.4
+sktime==0.24.0
+darts
+prophet
+pmdarima
+sktime
+darts
+
+# ============================================================================
+# Graph & Network Analysis
+# ============================================================================
+networkx
+igraph
+python-louvain
+
+# ============================================================================
+# Geospatial (for campus mapping)
+# ============================================================================
+geopy
+shapely
+folium
+geopandas
+
+# ============================================================================
+# Notification Services
+# ============================================================================
+# Email
+fastapi-mail
+jinja2
+premailer
+
+# Push notifications
+firebase-admin
+pushbullet.py
+
+# SMS
+twilio
+vonage
+
+# ============================================================================
+# Performance Monitoring
+# ============================================================================
+psutil
+py-spy
+memory-profiler
+line-profiler
+
+# ============================================================================
+# Security Scanning
+# ============================================================================
+python-magic
+clamd
+py7zr
+patool
+
+# ============================================================================
+# Configuration Management
+# ============================================================================
+dynaconf
+python-json-config
+hydra-core
+
+# ============================================================================
+# Docker & Container Support
+# ============================================================================
+docker
+docker-compose
+python-on-whales
+
+# ============================================================================
+# ============================================================================
+# Version Pinning Notes:
+# ============================================================================
+# All versions are tested together. If you need to upgrade a package,
+# test thoroughly as there may be compatibility issues with other packages.
+#
+# For production, consider using:
+# pip freeze > requirements.lock
+#
+# Or using Poetry: poetry.lock
+# ============================================================================

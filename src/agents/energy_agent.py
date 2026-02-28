@@ -7,6 +7,7 @@ from src.database import crud
 from src.services.cache import redis_client
 from src.services.monitoring import logger
 
+
 class EnergyAgent(BaseAgent):
     """Agent responsible for energy usage optimization"""
     
@@ -69,16 +70,19 @@ class EnergyAgent(BaseAgent):
                     db,
                     building=building,
                     action="empty_room_optimization",
-                    savings_kwh=total_savings,
-                    timestamp=datetime.utcnow()
+                    savings_kwh=total_savings
                 )
                 
                 # Cache the optimization result
-                await redis_client.setex(
-                    f"energy:optimization:{building}",
-                    3600,
-                    str(total_savings)
-                )
+                try:
+                    if redis_client:
+                        await redis_client.setex(
+                            f"energy:optimization:{building}",
+                            3600,
+                            str(total_savings)
+                        )
+                except Exception as cache_error:
+                    logger.warning(f"Cache write failed: {str(cache_error)}")
                 
                 return {
                     "status": "success",
@@ -89,6 +93,7 @@ class EnergyAgent(BaseAgent):
                         "total_savings_kwh": total_savings,
                         "carbon_reduction_kg": total_savings * 0.4  # Approx CO2 per kWh
                     },
+                    "error": None,
                     "fallback_used": False
                 }
                 
@@ -152,6 +157,7 @@ class EnergyAgent(BaseAgent):
                         "daily_savings_kwh": total_savings,
                         "monthly_savings_kwh": total_savings * 22  # Weekdays
                     },
+                    "error": None,
                     "fallback_used": False
                 }
                 
@@ -175,10 +181,15 @@ class EnergyAgent(BaseAgent):
                 
                 # Get cached optimizations
                 cached_optimizations = []
-                keys = await redis_client.keys("energy:optimization:*")
-                for key in keys:
-                    value = await redis_client.get(key)
-                    cached_optimizations.append({key: value})
+                try:
+                    if redis_client:
+                        keys = await redis_client.keys("energy:optimization:*")
+                        for key in keys:
+                            value = await redis_client.get(key)
+                            cached_optimizations.append({key: value})
+                except Exception as cache_error:
+                    logger.warning(f"Cache access failed: {str(cache_error)}")
+                    cached_optimizations = []
                 
                 return {
                     "status": "success",
@@ -193,6 +204,7 @@ class EnergyAgent(BaseAgent):
                             "Consider upgrading to LED lighting in Building B"
                         ]
                     },
+                    "error": None,
                     "fallback_used": False
                 }
                 

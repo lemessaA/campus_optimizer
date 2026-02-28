@@ -24,7 +24,217 @@ st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Go to",
     ["Dashboard", "Schedule Optimization", "Equipment Booking", "Energy Insights"]
+
 )
+
+# src/ui/streamlit_app.py (add to existing)
+# Add to the sidebar navigation
+st.sidebar.title("Navigation")
+page = st.sidebar.radio(
+    "Go to",
+    ["Dashboard", "Schedule Optimization", "Equipment Booking", "Energy Insights", "Customer Support"]  # New tab
+)
+
+# Customer Support Page
+elif page == "Customer Support":
+    st.header("🆘 Customer Support Center")
+    
+    tab1, tab2, tab3 = st.tabs(["Ask a Question", "My Tickets", "Knowledge Base"])
+    
+    # Tab 1: Ask a Question
+    with tab1:
+        st.subheader("How can we help you today?")
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            query = st.text_area("Type your question or issue", height=100,
+                                 placeholder="e.g., How do I book a classroom?")
+            
+            if st.button("Get Help", type="primary"):
+                with st.spinner("Searching for answers..."):
+                    # Call support agent
+                    response = make_api_request("POST", "/events", {
+                        "event_type": "support_query",
+                        "payload": {
+                            "request_type": "faq_query",
+                            "query": query,
+                            "user_id": "current_user"
+                        }
+                    })
+                
+                if response and response.get("data"):
+                    result = response["data"].get("results", {}).get("support", {})
+                    
+                    if result.get("status") == "success":
+                        answer_data = result["data"]
+                        
+                        st.success("✅ Found an answer!")
+                        
+                        # Display answer
+                        st.info(answer_data["answer"])
+                        
+                        if not answer_data.get("exact_match"):
+                            st.caption(f"Confidence: {answer_data.get('confidence', 0):.0%}")
+                        
+                        # Feedback
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.button("👍 Helpful")
+                        with col2:
+                            st.button("👎 Not Helpful")
+                        with col3:
+                            st.button("📧 Email Answer")
+                    
+                    elif result.get("status") == "no_match":
+                        st.warning("🤔 I couldn't find an exact match")
+                        
+                        # Show suggestion to create ticket
+                        suggestion = result["data"]["suggested_ticket"]
+                        st.info(f"**Suggested Category:** {suggestion['category'].title()}")
+                        
+                        if st.button("Create Support Ticket Instead"):
+                            st.session_state['create_ticket'] = suggestion
+        
+        with col2:
+            st.subheader("Quick Links")
+            st.markdown("""
+            - 📚 [Course Registration](#)
+            - 🔬 [Lab Access](#)
+            - 💡 [Energy Tips](#)
+            - 📞 [Contact Support](#)
+            """)
+            
+            st.subheader("Popular Topics")
+            st.markdown("""
+            - How to book equipment
+            - Classroom availability
+            - Report maintenance
+            - Access issues
+            """)
+    
+    # Tab 2: My Tickets
+    with tab2:
+        st.subheader("Your Support Tickets")
+        
+        col1, col2 = st.columns([1, 2])
+        
+        with col1:
+            st.markdown("### Create New Ticket")
+            
+            with st.form("new_ticket"):
+                category = st.selectbox(
+                    "Category",
+                    ["Select...", "Scheduling", "Equipment", "Facilities", "Energy", "Account"]
+                )
+                
+                priority = st.select_slider(
+                    "Priority",
+                    options=["Low", "Medium", "High", "Urgent"],
+                    value="Medium"
+                )
+                
+                description = st.text_area("Description", height=100,
+                                          placeholder="Describe your issue in detail...")
+                
+                submitted = st.form_submit_button("Submit Ticket")
+                
+                if submitted and category != "Select...":
+                    with st.spinner("Creating ticket..."):
+                        response = make_api_request("POST", "/events", {
+                            "event_type": "ticket_creation",
+                            "payload": {
+                                "request_type": "create_ticket",
+                                "category": category.lower(),
+                                "description": description,
+                                "priority": ["low", "medium", "high", "urgent"].index(priority.lower()) + 1,
+                                "user_id": "current_user"
+                            }
+                        })
+                    
+                    if response:
+                        ticket_data = response.get("data", {}).get("results", {}).get("support", {}).get("data", {})
+                        st.success(f"✅ Ticket #{ticket_data.get('ticket_id')} created!")
+                        st.info(f"Estimated resolution: {ticket_data.get('estimated_resolution')}")
+        
+        with col2:
+            st.markdown("### Your Recent Tickets")
+            
+            # Mock ticket data
+            tickets = [
+                {"id": "TKT-001", "category": "Equipment", "status": "In Progress", "priority": "High", "created": "2024-01-15"},
+                {"id": "TKT-002", "category": "Scheduling", "status": "Resolved", "priority": "Medium", "created": "2024-01-14"},
+                {"id": "TKT-003", "category": "Facilities", "status": "Open", "priority": "Low", "created": "2024-01-13"},
+            ]
+            
+            for ticket in tickets:
+                with st.expander(f"Ticket #{ticket['id']} - {ticket['category']} ({ticket['status']})"):
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Priority", ticket['priority'])
+                    with col2:
+                        st.metric("Status", ticket['status'])
+                    with col3:
+                        st.metric("Created", ticket['created'])
+                    
+                    if st.button(f"Check Status", key=f"check_{ticket['id']}"):
+                        st.info("Checking with support agent...")
+    
+    # Tab 3: Knowledge Base
+    with tab3:
+        st.subheader("Knowledge Base & FAQs")
+        
+        search = st.text_input("🔍 Search knowledge base", placeholder="Search for topics...")
+        
+        # Categories
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("### 📚 Scheduling")
+            st.markdown("""
+            - [How to book a classroom](#)
+            - [Schedule changes](#)
+            - [Room capacity guidelines](#)
+            - [Exam scheduling](#)
+            """)
+        
+        with col2:
+            st.markdown("### 🔬 Equipment")
+            st.markdown("""
+            - [Booking procedure](#)
+            - [Equipment training](#)
+            - [Maintenance requests](#)
+            - [Safety guidelines](#)
+            """)
+        
+        with col3:
+            st.markdown("### ⚡ Energy")
+            st.markdown("""
+            - [Energy saving tips](#)
+            - [Peak hours](#)
+            - [Green initiatives](#)
+            - [Report issues](#)
+            """)
+        
+        # Popular FAQs
+        st.markdown("---")
+        st.subheader("Frequently Asked Questions")
+        
+        faqs = [
+            ("How do I book equipment?", "Visit Equipment Booking page, select item and time..."),
+            ("What if my classroom is double-booked?", "Contact scheduling office immediately..."),
+            ("How to report maintenance?", "Create a ticket in the support center..."),
+            ("Energy saving tips?", "Check Energy Insights page for recommendations..."),
+        ]
+        
+        for question, answer in faqs:
+            with st.expander(question):
+                st.write(answer)
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.button(f"👍 Helpful", key=f"helpful_{question[:10]}")
+                with col2:
+                    st.button(f"📌 Save", key=f"save_{question[:10]}")
 
 # Helper functions
 def make_api_request(method, endpoint, data=None):

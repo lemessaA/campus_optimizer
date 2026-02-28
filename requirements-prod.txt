@@ -1,0 +1,9 @@
+# Production dependencies
+-r requirements-base.txt
+gunicorn
+uvloop
+httptools
+orjson
+prometheus-client
+sentry-sdk
+python-json-logger

@@ -1,8 +1,9 @@
 # src/core/exceptions.py
-
+# this file contains custom exceptions for the campus optimizer system
 class CampusOptimizerError(Exception):
     """Base exception for campus optimizer system"""
     pass
+
 
 class SchedulingError(CampusOptimizerError):
     """Exception raised when scheduling operations fail"""

@@ -194,3 +194,1018 @@ WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
 error
   Field required [type=missing, input_value={'status': 'success', 'da...': 0.07058072090148926}}, input_type=dict]
     For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 03:55:02,451 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:02,455 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 03:55:02,456 - sqlalchemy.engine.Engine - INFO - [generated in 0.00079s] ('lemessa', 12, '03:54', 60, 'Engineering')
+2026-02-28 03:55:02,468 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:02,479 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:02,484 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 03:55:02,484 - sqlalchemy.engine.Engine - INFO - [generated in 0.00063s] (1,)
+2026-02-28 03:55:02,489 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:02,491 - src.services.monitoring - ERROR - Course creation failed: 'Course' object has no attribute 'dict'
+2026-02-28 03:55:18,641 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:18,641 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 03:55:18,642 - sqlalchemy.engine.Engine - INFO - [cached since 16.19s ago] ('lemessa', 12, '03:54', 60, 'Engineering')
+2026-02-28 03:55:18,643 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:18,648 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:18,649 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 03:55:18,649 - sqlalchemy.engine.Engine - INFO - [cached since 16.17s ago] (2,)
+2026-02-28 03:55:18,651 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:18,652 - src.services.monitoring - ERROR - Course creation failed: 'Course' object has no attribute 'dict'
+2026-02-28 03:55:20,421 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:20,421 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 03:55:20,422 - sqlalchemy.engine.Engine - INFO - [cached since 17.97s ago] ('lemessa', 12, '03:54', 60, 'Engineering')
+2026-02-28 03:55:20,425 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:20,432 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 03:55:20,434 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 03:55:20,435 - sqlalchemy.engine.Engine - INFO - [cached since 17.95s ago] (3,)
+2026-02-28 03:55:20,438 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 03:55:20,440 - src.services.monitoring - ERROR - Course creation failed: 'Course' object has no attribute 'dict'
+2026-02-28 04:01:13,494 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:01:13,494 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:13,495 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:13,495 - sqlalchemy.engine.Engine - INFO - [cached since 595.4s ago] (datetime.datetime(2026, 2, 27, 1, 1, 13, 494372),)
+2026-02-28 04:01:13,497 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:13,498 - sqlalchemy.engine.Engine - INFO - [cached since 595.4s ago] (datetime.datetime(2026, 1, 29, 1, 1, 13, 497414),)
+2026-02-28 04:01:13,499 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:01:13,500 - src.services.monitoring - ERROR - Energy insights failed: 'NoneType' object has no attribute 'keys'
+2026-02-28 04:01:13,500 - src.services.monitoring - INFO - Agent energy_agent completed in 0.01s
+2026-02-28 04:01:13,502 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:01:13,502 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:01:13,503 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:01:13,505 - src.services.monitoring - INFO - Event 6affd211-c8fa-43be-8675-4ee2cf862f75 processed
+2026-02-28 04:01:13,505 - src.services.monitoring - ERROR - Energy insights failed: 1 validation error for AgentResponse
+error
+  Field required [type=missing, input_value={'status': 'success', 'da...: 0.013334035873413086}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 04:01:28,134 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:01:28,134 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:28,138 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:01:28,139 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:28,142 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:01:28,142 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:28,145 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:28,155 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,156 - sqlalchemy.engine.Engine - INFO - [generated in 0.00074s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,161 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,161 - sqlalchemy.engine.Engine - INFO - [cached since 0.006076s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,163 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,163 - sqlalchemy.engine.Engine - INFO - [cached since 0.007693s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,164 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,164 - sqlalchemy.engine.Engine - INFO - [cached since 0.009145s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,166 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,166 - sqlalchemy.engine.Engine - INFO - [cached since 0.01076s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,167 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:28,167 - sqlalchemy.engine.Engine - INFO - [cached since 0.01223s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:28,169 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:01:31,388 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:01:31,388 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:31,391 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:01:31,391 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:31,393 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:01:31,393 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:31,396 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:31,404 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,404 - sqlalchemy.engine.Engine - INFO - [generated in 0.00054s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,409 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,410 - sqlalchemy.engine.Engine - INFO - [cached since 0.006321s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,411 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,412 - sqlalchemy.engine.Engine - INFO - [cached since 0.008419s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,414 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,414 - sqlalchemy.engine.Engine - INFO - [cached since 0.01064s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,416 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,416 - sqlalchemy.engine.Engine - INFO - [cached since 0.01263s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,417 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:31,417 - sqlalchemy.engine.Engine - INFO - [cached since 0.01398s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:31,418 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:01:40,992 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:01:40,993 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:41,017 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:41,018 - sqlalchemy.engine.Engine - INFO - [generated in 0.00044s] (datetime.datetime(2026, 2, 27, 1, 1, 40, 992464),)
+2026-02-28 04:01:41,021 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:41,021 - sqlalchemy.engine.Engine - INFO - [cached since 0.004148s ago] (datetime.datetime(2026, 1, 29, 1, 1, 41, 20792),)
+2026-02-28 04:01:41,023 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:01:41,024 - src.services.monitoring - ERROR - Energy insights failed: 'NoneType' object has no attribute 'keys'
+2026-02-28 04:01:41,024 - src.services.monitoring - INFO - Agent energy_agent completed in 0.03s
+2026-02-28 04:01:41,027 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:01:41,027 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:01:41,031 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:01:41,033 - src.services.monitoring - INFO - Event 38a4dea6-96e4-44c9-ac71-8d3fe70fe253 processed
+2026-02-28 04:01:41,033 - src.services.monitoring - ERROR - Energy insights failed: 1 validation error for AgentResponse
+error
+  Field required [type=missing, input_value={'status': 'success', 'da...': 0.04804801940917969}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 04:01:55,906 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:01:55,906 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:55,909 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:01:55,909 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:55,911 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:01:55,911 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:01:55,913 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:55,920 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,921 - sqlalchemy.engine.Engine - INFO - [generated in 0.00073s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,926 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,927 - sqlalchemy.engine.Engine - INFO - [cached since 0.006689s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,928 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,928 - sqlalchemy.engine.Engine - INFO - [cached since 0.008238s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,930 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,930 - sqlalchemy.engine.Engine - INFO - [cached since 0.01041s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,932 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,933 - sqlalchemy.engine.Engine - INFO - [cached since 0.01259s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,935 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:01:55,936 - sqlalchemy.engine.Engine - INFO - [cached since 0.0156s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:01:55,939 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:01:57,021 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:01:57,023 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:01:57,039 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:57,040 - sqlalchemy.engine.Engine - INFO - [generated in 0.00030s] (datetime.datetime(2026, 2, 27, 1, 1, 57, 22293),)
+2026-02-28 04:01:57,043 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:01:57,043 - sqlalchemy.engine.Engine - INFO - [cached since 0.003836s ago] (datetime.datetime(2026, 1, 29, 1, 1, 57, 42805),)
+2026-02-28 04:01:57,045 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:01:57,046 - src.services.monitoring - ERROR - Energy insights failed: 'NoneType' object has no attribute 'keys'
+2026-02-28 04:01:57,046 - src.services.monitoring - INFO - Agent energy_agent completed in 0.02s
+2026-02-28 04:01:57,049 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:01:57,049 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:01:57,052 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:01:57,055 - src.services.monitoring - INFO - Event a58806db-f945-4aca-a3ab-f46363564fb8 processed
+2026-02-28 04:01:57,055 - src.services.monitoring - ERROR - Energy insights failed: 1 validation error for AgentResponse
+error
+  Field required [type=missing, input_value={'status': 'success', 'da...': 0.03851652145385742}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 04:02:12,790 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:02:12,791 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:12,793 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:02:12,794 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:12,796 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:02:12,796 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:12,800 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:02:12,809 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,809 - sqlalchemy.engine.Engine - INFO - [generated in 0.00039s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,814 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,814 - sqlalchemy.engine.Engine - INFO - [cached since 0.005072s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,815 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,816 - sqlalchemy.engine.Engine - INFO - [cached since 0.006659s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,818 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,819 - sqlalchemy.engine.Engine - INFO - [cached since 0.00976s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,820 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,821 - sqlalchemy.engine.Engine - INFO - [cached since 0.01182s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,823 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:12,823 - sqlalchemy.engine.Engine - INFO - [cached since 0.01432s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:12,825 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:02:16,779 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:02:16,780 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:02:16,809 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:02:16,809 - sqlalchemy.engine.Engine - INFO - [generated in 0.00055s] (datetime.datetime(2026, 2, 27, 1, 2, 16, 779499),)
+2026-02-28 04:02:16,814 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:02:16,814 - sqlalchemy.engine.Engine - INFO - [cached since 0.005101s ago] (datetime.datetime(2026, 1, 29, 1, 2, 16, 813427),)
+2026-02-28 04:02:16,815 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:02:16,817 - src.services.monitoring - ERROR - Energy insights failed: 'NoneType' object has no attribute 'keys'
+2026-02-28 04:02:16,817 - src.services.monitoring - INFO - Agent energy_agent completed in 0.04s
+2026-02-28 04:02:16,820 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:02:16,820 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:02:16,825 - src.services.monitoring - INFO - Agent notification_agent completed in 0.01s
+2026-02-28 04:02:16,828 - src.services.monitoring - INFO - Event 95da2df2-5254-478e-902f-4abcb36134f4 processed
+2026-02-28 04:02:16,828 - src.services.monitoring - ERROR - Energy insights failed: 1 validation error for AgentResponse
+error
+  Field required [type=missing, input_value={'status': 'success', 'da...': 0.05772280693054199}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 04:02:46,620 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:02:46,620 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:46,623 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:02:46,623 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:46,625 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:02:46,626 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:46,628 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:02:46,634 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,634 - sqlalchemy.engine.Engine - INFO - [generated in 0.00038s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,642 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,642 - sqlalchemy.engine.Engine - INFO - [cached since 0.008255s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,644 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,644 - sqlalchemy.engine.Engine - INFO - [cached since 0.01058s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,646 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,646 - sqlalchemy.engine.Engine - INFO - [cached since 0.01266s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,649 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,649 - sqlalchemy.engine.Engine - INFO - [cached since 0.01561s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,651 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:46,652 - sqlalchemy.engine.Engine - INFO - [cached since 0.01806s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:46,655 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:02:52,890 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:02:52,890 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:52,893 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:02:52,893 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:52,895 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:02:52,895 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:02:52,898 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:02:52,905 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,906 - sqlalchemy.engine.Engine - INFO - [generated in 0.00039s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,910 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,910 - sqlalchemy.engine.Engine - INFO - [cached since 0.004819s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,911 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,912 - sqlalchemy.engine.Engine - INFO - [cached since 0.006544s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,913 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,913 - sqlalchemy.engine.Engine - INFO - [cached since 0.008085s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,914 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,915 - sqlalchemy.engine.Engine - INFO - [cached since 0.009369s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,916 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:02:52,916 - sqlalchemy.engine.Engine - INFO - [cached since 0.01121s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:02:52,918 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:05,080 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:03:05,081 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:05,099 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:03:05,100 - sqlalchemy.engine.Engine - INFO - [generated in 0.00040s] (datetime.datetime(2026, 2, 27, 1, 3, 5, 80692),)
+2026-02-28 04:03:05,103 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:03:05,103 - sqlalchemy.engine.Engine - INFO - [cached since 0.003782s ago] (datetime.datetime(2026, 1, 29, 1, 3, 5, 102631),)
+2026-02-28 04:03:05,104 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:05,105 - src.services.monitoring - INFO - Agent energy_agent completed in 0.03s
+2026-02-28 04:03:05,108 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:03:05,108 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:03:05,112 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:03:05,114 - src.services.monitoring - INFO - Event 41cb25d7-91c4-4be0-a63e-30ad5456f871 processed
+2026-02-28 04:03:05,114 - src.services.monitoring - ERROR - Energy insights failed: 1 validation error for AgentResponse
+error
+  Field required [type=missing, input_value={'status': 'success', 'da...': 0.03959226608276367}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-02-28 04:03:17,203 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:03:17,203 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:17,206 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:03:17,206 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:17,208 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:03:17,208 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:17,210 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:17,217 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,217 - sqlalchemy.engine.Engine - INFO - [generated in 0.00036s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,222 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,223 - sqlalchemy.engine.Engine - INFO - [cached since 0.005579s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,224 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,225 - sqlalchemy.engine.Engine - INFO - [cached since 0.007563s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,226 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,226 - sqlalchemy.engine.Engine - INFO - [cached since 0.008791s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,227 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,227 - sqlalchemy.engine.Engine - INFO - [cached since 0.01015s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,229 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:17,229 - sqlalchemy.engine.Engine - INFO - [cached since 0.01181s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:17,231 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:21,680 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:03:21,680 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:21,684 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:03:21,684 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:21,686 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:03:21,686 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:21,689 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:21,697 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,697 - sqlalchemy.engine.Engine - INFO - [generated in 0.00061s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,702 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,702 - sqlalchemy.engine.Engine - INFO - [cached since 0.00547s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,704 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,704 - sqlalchemy.engine.Engine - INFO - [cached since 0.007417s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,706 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,706 - sqlalchemy.engine.Engine - INFO - [cached since 0.009552s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,708 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,708 - sqlalchemy.engine.Engine - INFO - [cached since 0.01142s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,709 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:21,710 - sqlalchemy.engine.Engine - INFO - [cached since 0.01287s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:21,711 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:25,108 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:03:25,110 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:25,135 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:03:25,136 - sqlalchemy.engine.Engine - INFO - [generated in 0.00067s] (datetime.datetime(2026, 2, 27, 1, 3, 25, 108805),)
+2026-02-28 04:03:25,141 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:03:25,142 - sqlalchemy.engine.Engine - INFO - [cached since 0.007084s ago] (datetime.datetime(2026, 1, 29, 1, 3, 25, 140459),)
+2026-02-28 04:03:25,144 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:25,146 - src.services.monitoring - INFO - Agent energy_agent completed in 0.04s
+2026-02-28 04:03:25,149 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:03:25,149 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:03:25,153 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:03:25,156 - src.services.monitoring - INFO - Event 238f993e-0f8f-4b32-91b2-4bd120e180bf processed
+2026-02-28 04:03:35,044 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:35,047 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:03:35,048 - sqlalchemy.engine.Engine - INFO - [generated in 0.00043s] ('Computer Science 101', 30, '09:00', 90, 'A')
+2026-02-28 04:03:35,051 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:35,057 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:35,060 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:03:35,061 - sqlalchemy.engine.Engine - INFO - [generated in 0.00046s] (4,)
+2026-02-28 04:03:35,063 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:35,065 - src.services.monitoring - ERROR - Course creation failed: 'Course' object has no attribute 'dict'
+2026-02-28 04:03:46,831 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:03:46,831 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:46,833 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:03:46,833 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:46,835 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:03:46,836 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:03:46,837 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:46,842 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,842 - sqlalchemy.engine.Engine - INFO - [generated in 0.00036s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,846 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,846 - sqlalchemy.engine.Engine - INFO - [cached since 0.004377s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,847 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,848 - sqlalchemy.engine.Engine - INFO - [cached since 0.005751s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,849 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,849 - sqlalchemy.engine.Engine - INFO - [cached since 0.007099s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,850 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,850 - sqlalchemy.engine.Engine - INFO - [cached since 0.008188s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,851 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:03:46,851 - sqlalchemy.engine.Engine - INFO - [cached since 0.009543s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:03:46,852 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:50,866 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:50,869 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:03:50,869 - sqlalchemy.engine.Engine - INFO - [generated in 0.00033s] ('Computer Science 101', 30, '09:00', 90, 'A')
+2026-02-28 04:03:50,871 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:50,877 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:50,881 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:03:50,881 - sqlalchemy.engine.Engine - INFO - [generated in 0.00046s] (5,)
+2026-02-28 04:03:50,884 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:03:50,892 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:03:50,893 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:03:50,896 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER AND classrooms.building = $2::VARCHAR
+2026-02-28 04:03:50,896 - sqlalchemy.engine.Engine - INFO - [generated in 0.00040s] (30, 'A')
+2026-02-28 04:03:50,901 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:03:50,901 - sqlalchemy.engine.Engine - INFO - [generated in 0.00047s] (30,)
+2026-02-28 04:03:50,905 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::FLOAT
+2026-02-28 04:03:50,905 - sqlalchemy.engine.Engine - INFO - [generated in 0.00043s] (24.0,)
+2026-02-28 04:03:50,908 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:03:50,909 - src.services.monitoring - ERROR - Scheduling allocation failed: No suitable classrooms available
+2026-02-28 04:03:50,909 - src.services.monitoring - INFO - Agent scheduling_agent completed in 0.02s
+2026-02-28 04:03:50,912 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:03:50,912 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:03:50,914 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:03:50,915 - src.services.monitoring - INFO - Notification sent: EventType.COURSE_CREATED
+2026-02-28 04:03:50,919 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:03:50,921 - src.services.monitoring - INFO - Event 48b24e3b-f34a-4435-bfd9-7b36f84819a8 processed
+2026-02-28 04:04:15,367 - src.services.monitoring - INFO - Agent equipment_agent started processing
+2026-02-28 04:04:15,368 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:04:15,369 - sqlalchemy.engine.Engine - INFO - SELECT equipment.id, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM equipment 
+WHERE equipment.id = $1::INTEGER
+2026-02-28 04:04:15,370 - sqlalchemy.engine.Engine - INFO - [generated in 0.00037s] (1,)
+2026-02-28 04:04:15,373 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:04:15,374 - src.services.monitoring - INFO - Agent equipment_agent completed in 0.01s
+2026-02-28 04:04:15,376 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:04:15,376 - src.services.monitoring - INFO - Notification sent: EventType.EQUIPMENT_BOOKING
+2026-02-28 04:04:15,377 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:04:15,379 - src.services.monitoring - INFO - Event d242a36a-880a-4811-9cc3-e946e86d785f processed
+2026-02-28 04:04:37,003 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:04:37,004 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:04:37,010 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.building = $1::VARCHAR AND (classrooms.id NOT IN (SELECT classroom_bookings.classroom_id 
+FROM classroom_bookings 
+WHERE classroom_bookings.time_slot = $2::VARCHAR))
+2026-02-28 04:04:37,012 - sqlalchemy.engine.Engine - INFO - [generated in 0.00247s] ('A', '01:04')
+2026-02-28 04:04:37,016 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:04:37,018 - src.services.monitoring - ERROR - Energy optimization failed: create_energy_log() got an unexpected keyword argument 'timestamp'
+2026-02-28 04:04:37,020 - src.services.monitoring - INFO - Agent energy_agent completed in 0.02s
+2026-02-28 04:04:37,024 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:04:37,026 - src.services.monitoring - INFO - Notification sent: EventType.CLASSROOM_EMPTY
+2026-02-28 04:04:37,027 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:04:37,030 - src.services.monitoring - INFO - Event d83606b7-4d11-4c43-b226-ffe5543e9ce5 processed
+2026-02-28 04:05:48,585 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:05:48,586 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:05:48,586 - sqlalchemy.engine.Engine - INFO - [cached since 117.7s ago] ('ethiopia', 1, '04:05', 60, None)
+2026-02-28 04:05:48,588 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:05:48,593 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:05:48,594 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:05:48,594 - sqlalchemy.engine.Engine - INFO - [cached since 117.7s ago] (6,)
+2026-02-28 04:05:48,596 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:05:48,604 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:05:48,606 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:05:48,607 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:05:48,608 - sqlalchemy.engine.Engine - INFO - [cached since 117.7s ago] (1,)
+2026-02-28 04:05:48,611 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:05:48,611 - sqlalchemy.engine.Engine - INFO - [cached since 117.7s ago] (1,)
+2026-02-28 04:05:48,613 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::FLOAT
+2026-02-28 04:05:48,614 - sqlalchemy.engine.Engine - INFO - [cached since 117.7s ago] (0.8,)
+2026-02-28 04:05:48,615 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:05:48,616 - src.services.monitoring - ERROR - Scheduling allocation failed: No suitable classrooms available
+2026-02-28 04:05:48,616 - src.services.monitoring - INFO - Agent scheduling_agent completed in 0.01s
+2026-02-28 04:05:48,619 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:05:48,620 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:05:48,623 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:05:48,623 - src.services.monitoring - INFO - Notification sent: EventType.COURSE_CREATED
+2026-02-28 04:05:48,625 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:05:48,629 - src.services.monitoring - INFO - Event 4483e9a7-ca29-45dc-a88e-654d4889f259 processed
+2026-02-28 04:07:09,448 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:09,448 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:07:09,449 - sqlalchemy.engine.Engine - INFO - [cached since 198.6s ago] ('ethiopia', 1, '04:06', 60, None)
+2026-02-28 04:07:09,450 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:07:09,455 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:09,456 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:07:09,456 - sqlalchemy.engine.Engine - INFO - [cached since 198.6s ago] (7,)
+2026-02-28 04:07:09,458 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:07:09,464 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:07:09,466 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:09,467 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:07:09,468 - sqlalchemy.engine.Engine - INFO - [cached since 198.6s ago] (1,)
+2026-02-28 04:07:09,470 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:07:09,470 - sqlalchemy.engine.Engine - INFO - [cached since 198.6s ago] (1,)
+2026-02-28 04:07:09,473 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::FLOAT
+2026-02-28 04:07:09,473 - sqlalchemy.engine.Engine - INFO - [cached since 198.6s ago] (0.8,)
+2026-02-28 04:07:09,474 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:07:09,477 - src.services.monitoring - ERROR - Scheduling allocation failed: No suitable classrooms available
+2026-02-28 04:07:09,478 - src.services.monitoring - INFO - Agent scheduling_agent completed in 0.01s
+2026-02-28 04:07:09,481 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:07:09,482 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:07:09,484 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:07:09,484 - src.services.monitoring - INFO - Notification sent: EventType.COURSE_CREATED
+2026-02-28 04:07:09,485 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:07:09,489 - src.services.monitoring - INFO - Event ab79411c-85a3-425c-98e1-dd569f1e614a processed
+2026-02-28 04:07:39,339 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:39,339 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:07:39,340 - sqlalchemy.engine.Engine - INFO - [cached since 228.5s ago] ('lemi01', 1, '04:06', 60, None)
+2026-02-28 04:07:39,346 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:07:39,354 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:39,356 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:07:39,360 - sqlalchemy.engine.Engine - INFO - [cached since 228.5s ago] (8,)
+2026-02-28 04:07:39,362 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:07:39,371 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:07:39,376 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:07:39,376 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:07:39,377 - sqlalchemy.engine.Engine - INFO - [cached since 228.5s ago] (1,)
+2026-02-28 04:07:39,379 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER
+2026-02-28 04:07:39,383 - sqlalchemy.engine.Engine - INFO - [cached since 228.5s ago] (1,)
+2026-02-28 04:07:39,385 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::FLOAT
+2026-02-28 04:07:39,386 - sqlalchemy.engine.Engine - INFO - [cached since 228.5s ago] (0.8,)
+2026-02-28 04:07:39,391 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:07:39,392 - src.services.monitoring - ERROR - Scheduling allocation failed: No suitable classrooms available
+2026-02-28 04:07:39,393 - src.services.monitoring - INFO - Agent scheduling_agent completed in 0.02s
+2026-02-28 04:07:39,399 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:07:39,400 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:07:39,406 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:07:39,406 - src.services.monitoring - INFO - Notification sent: EventType.COURSE_CREATED
+2026-02-28 04:07:39,408 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:07:39,414 - src.services.monitoring - INFO - Event 8ca70af2-a445-4268-9873-8c3fff1c8e81 processed
+2026-02-28 04:10:02,192 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:10:02,192 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:02,195 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:10:02,195 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:02,197 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:10:02,197 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:02,199 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:10:02,206 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,206 - sqlalchemy.engine.Engine - INFO - [generated in 0.00066s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,211 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,212 - sqlalchemy.engine.Engine - INFO - [cached since 0.006477s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,213 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,214 - sqlalchemy.engine.Engine - INFO - [cached since 0.008393s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,215 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,215 - sqlalchemy.engine.Engine - INFO - [cached since 0.01012s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,217 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,217 - sqlalchemy.engine.Engine - INFO - [cached since 0.0116s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,218 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:02,219 - sqlalchemy.engine.Engine - INFO - [cached since 0.01326s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:02,220 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:10:08,534 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:10:08,534 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:08,538 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:10:08,539 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:08,541 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:10:08,541 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:08,544 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:10:08,553 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,553 - sqlalchemy.engine.Engine - INFO - [generated in 0.00060s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,557 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,558 - sqlalchemy.engine.Engine - INFO - [cached since 0.005253s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,559 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,559 - sqlalchemy.engine.Engine - INFO - [cached since 0.007075s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,561 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,561 - sqlalchemy.engine.Engine - INFO - [cached since 0.008822s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,563 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,563 - sqlalchemy.engine.Engine - INFO - [cached since 0.01052s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,564 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:08,565 - sqlalchemy.engine.Engine - INFO - [cached since 0.0123s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:08,566 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:10:12,947 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:10:12,948 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:12,951 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:10:12,952 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:12,956 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:10:12,956 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:12,960 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:10:12,967 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,967 - sqlalchemy.engine.Engine - INFO - [generated in 0.00058s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,974 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,975 - sqlalchemy.engine.Engine - INFO - [cached since 0.008051s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,977 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,977 - sqlalchemy.engine.Engine - INFO - [cached since 0.01045s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,979 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,979 - sqlalchemy.engine.Engine - INFO - [cached since 0.01257s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,983 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,983 - sqlalchemy.engine.Engine - INFO - [cached since 0.01669s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,985 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:12,986 - sqlalchemy.engine.Engine - INFO - [cached since 0.01927s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:12,991 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:10:19,754 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 04:10:19,754 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:19,758 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 04:10:19,759 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:19,761 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 04:10:19,761 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 04:10:19,764 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:10:19,769 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,770 - sqlalchemy.engine.Engine - INFO - [generated in 0.00058s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,776 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,776 - sqlalchemy.engine.Engine - INFO - [cached since 0.007179s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,778 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,778 - sqlalchemy.engine.Engine - INFO - [cached since 0.009101s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,780 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,780 - sqlalchemy.engine.Engine - INFO - [cached since 0.01068s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,781 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,781 - sqlalchemy.engine.Engine - INFO - [cached since 0.01211s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,782 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 04:10:19,783 - sqlalchemy.engine.Engine - INFO - [cached since 0.01352s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 04:10:19,784 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:14:50,418 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:14:50,421 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:14:50,454 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:14:50,456 - sqlalchemy.engine.Engine - INFO - [generated in 0.00142s] (datetime.datetime(2026, 2, 27, 1, 14, 50, 420063),)
+2026-02-28 04:14:50,464 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:14:50,465 - sqlalchemy.engine.Engine - INFO - [cached since 0.01115s ago] (datetime.datetime(2026, 1, 29, 1, 14, 50, 463635),)
+2026-02-28 04:14:50,469 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:14:50,472 - src.services.monitoring - INFO - Agent energy_agent completed in 0.05s
+2026-02-28 04:14:50,478 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:14:50,478 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:14:50,484 - src.services.monitoring - INFO - Agent notification_agent completed in 0.01s
+2026-02-28 04:14:50,492 - src.services.monitoring - INFO - Event 5df26e61-dd17-410b-aeab-03796a12f9f1 processed
+2026-02-28 04:15:32,139 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:15:32,141 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:15:32,142 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:15:32,142 - sqlalchemy.engine.Engine - INFO - [cached since 41.69s ago] (datetime.datetime(2026, 2, 27, 1, 15, 32, 140279),)
+2026-02-28 04:15:32,145 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:15:32,146 - sqlalchemy.engine.Engine - INFO - [cached since 41.69s ago] (datetime.datetime(2026, 1, 29, 1, 15, 32, 144294),)
+2026-02-28 04:15:32,148 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:15:32,150 - src.services.monitoring - INFO - Agent energy_agent completed in 0.01s
+2026-02-28 04:15:32,152 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:15:32,153 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:15:32,154 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:15:32,158 - src.services.monitoring - INFO - Event f61344db-2999-4ccc-acbb-ff48035d1455 processed
+2026-02-28 04:15:42,644 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:15:42,646 - sqlalchemy.engine.Engine - INFO - INSERT INTO courses (name, students_count, schedule_time, duration_minutes, preferred_building) VALUES ($1::VARCHAR, $2::INTEGER, $3::VARCHAR, $4::INTEGER, $5::VARCHAR) RETURNING courses.id
+2026-02-28 04:15:42,646 - sqlalchemy.engine.Engine - INFO - [generated in 0.00030s] ('Machine Learning', 35, '10:00', 90, 'B')
+2026-02-28 04:15:42,649 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:15:42,655 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:15:42,657 - sqlalchemy.engine.Engine - INFO - SELECT courses.id, courses.name, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM courses 
+WHERE courses.id = $1::INTEGER
+2026-02-28 04:15:42,657 - sqlalchemy.engine.Engine - INFO - [generated in 0.00030s] (9,)
+2026-02-28 04:15:42,660 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:15:42,665 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:15:42,666 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:15:42,669 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.capacity >= $1::INTEGER AND classrooms.building = $2::VARCHAR
+2026-02-28 04:15:42,669 - sqlalchemy.engine.Engine - INFO - [generated in 0.00045s] (35, 'B')
+2026-02-28 04:15:42,675 - sqlalchemy.engine.Engine - INFO - INSERT INTO classroom_bookings (classroom_id, course_id, time_slot, date) VALUES ($1::INTEGER, $2::INTEGER, $3::VARCHAR, $4::TIMESTAMP WITHOUT TIME ZONE) RETURNING classroom_bookings.id
+2026-02-28 04:15:42,675 - sqlalchemy.engine.Engine - INFO - [generated in 0.00042s] (5, 9, '10:00', datetime.datetime(2026, 2, 28, 1, 15, 42, 674976))
+2026-02-28 04:15:42,678 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:15:42,683 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:15:42,684 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date 
+FROM classroom_bookings 
+WHERE classroom_bookings.id = $1::INTEGER
+2026-02-28 04:15:42,684 - sqlalchemy.engine.Engine - INFO - [generated in 0.00027s] (4,)
+2026-02-28 04:15:42,686 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-02-28 04:15:42,688 - src.services.monitoring - ERROR - Scheduling allocation failed: 'Classroom' object has no attribute 'dict'
+2026-02-28 04:15:42,688 - src.services.monitoring - INFO - Agent scheduling_agent completed in 0.02s
+2026-02-28 04:15:42,690 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:15:42,690 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:15:42,692 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:15:42,692 - src.services.monitoring - INFO - Notification sent: EventType.COURSE_CREATED
+2026-02-28 04:15:42,693 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:15:42,695 - src.services.monitoring - INFO - Event 12b6f3d6-b276-49f4-9540-4a58da3da4e1 processed
+2026-02-28 04:16:48,945 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:16:48,948 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:16:48,960 - sqlalchemy.engine.Engine - INFO - SELECT classrooms.id, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment 
+FROM classrooms 
+WHERE classrooms.building = $1::VARCHAR AND (classrooms.id NOT IN (SELECT classroom_bookings.classroom_id 
+FROM classroom_bookings 
+WHERE classroom_bookings.time_slot = $2::VARCHAR))
+2026-02-28 04:16:48,964 - sqlalchemy.engine.Engine - INFO - [generated in 0.00402s] ('B', '01:16')
+2026-02-28 04:16:48,974 - sqlalchemy.engine.Engine - INFO - INSERT INTO energy_logs (timestamp, building, consumption, savings_kwh, action) VALUES ($1::TIMESTAMP WITHOUT TIME ZONE, $2::VARCHAR, $3::FLOAT, $4::FLOAT, $5::VARCHAR) RETURNING energy_logs.id
+2026-02-28 04:16:48,977 - sqlalchemy.engine.Engine - INFO - [generated in 0.00255s] (datetime.datetime(2026, 2, 28, 1, 16, 48, 974777), 'B', 0.0, 5.0, 'empty_room_optimization')
+2026-02-28 04:16:48,983 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:16:48,996 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:16:49,000 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.id = $1::INTEGER
+2026-02-28 04:16:49,001 - sqlalchemy.engine.Engine - INFO - [generated in 0.00088s] (2,)
+2026-02-28 04:16:49,006 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:16:49,007 - src.services.monitoring - INFO - Agent energy_agent completed in 0.06s
+2026-02-28 04:16:49,012 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:16:49,012 - src.services.monitoring - INFO - Notification sent: EventType.CLASSROOM_EMPTY
+2026-02-28 04:16:49,016 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:16:49,019 - src.services.monitoring - INFO - Event 32e8eb7b-92d4-4579-8fa1-02b5f803affd processed
+2026-02-28 04:19:52,932 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:19:52,933 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:19:52,933 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:19:52,934 - sqlalchemy.engine.Engine - INFO - [cached since 302.5s ago] (datetime.datetime(2026, 2, 27, 1, 19, 52, 933119),)
+2026-02-28 04:19:52,936 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:19:52,936 - sqlalchemy.engine.Engine - INFO - [cached since 302.5s ago] (datetime.datetime(2026, 1, 29, 1, 19, 52, 935579),)
+2026-02-28 04:19:52,937 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:19:52,938 - src.services.monitoring - INFO - Agent energy_agent completed in 0.01s
+2026-02-28 04:19:52,940 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:19:52,941 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:19:52,941 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:19:52,944 - src.services.monitoring - INFO - Event 80d60840-bd36-4e45-8bd9-aa87793df23e processed
+2026-02-28 04:19:54,582 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:19:54,583 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:19:54,584 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:19:54,584 - sqlalchemy.engine.Engine - INFO - [cached since 304.1s ago] (datetime.datetime(2026, 2, 27, 1, 19, 54, 582889),)
+2026-02-28 04:19:54,586 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:19:54,586 - sqlalchemy.engine.Engine - INFO - [cached since 304.1s ago] (datetime.datetime(2026, 1, 29, 1, 19, 54, 585710),)
+2026-02-28 04:19:54,587 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:19:54,589 - src.services.monitoring - INFO - Agent energy_agent completed in 0.01s
+2026-02-28 04:19:54,591 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:19:54,591 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:19:54,592 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:19:54,595 - src.services.monitoring - INFO - Event 38887ddf-0199-49c9-b885-7eefc5ee5100 processed
+2026-02-28 04:50:06,311 - src.services.monitoring - INFO - Agent scheduling_agent started processing
+2026-02-28 04:50:06,311 - src.services.monitoring - ERROR - Agent scheduling_agent failed: 'NoneType' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/home/lemessa-ahmed/campus_optimizer/src/agents/base_agent.py", line 44, in execute_with_retry
+    extra={"result_status": result.get("status")})
+                            ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-02-28 04:50:06,314 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:50:06,314 - src.services.monitoring - INFO - Agent energy_agent completed in 0.00s
+2026-02-28 04:50:06,317 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:50:06,317 - src.services.monitoring - INFO - Notification sent: EventType.TIMETABLE_UPDATED
+2026-02-28 04:50:06,318 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:50:06,321 - src.services.monitoring - INFO - Event 7d997050-007f-4d44-b38e-94c0cecd5672 processed
+2026-02-28 04:50:31,694 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-02-28 04:50:31,694 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 04:50:31,695 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:50:31,695 - sqlalchemy.engine.Engine - INFO - [cached since 2141s ago] (datetime.datetime(2026, 2, 27, 1, 50, 31, 694430),)
+2026-02-28 04:50:31,697 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-02-28 04:50:31,697 - sqlalchemy.engine.Engine - INFO - [cached since 2141s ago] (datetime.datetime(2026, 1, 29, 1, 50, 31, 696773),)
+2026-02-28 04:50:31,698 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 04:50:31,699 - src.services.monitoring - INFO - Agent energy_agent completed in 0.01s
+2026-02-28 04:50:31,702 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-02-28 04:50:31,702 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-02-28 04:50:31,703 - src.services.monitoring - INFO - Agent notification_agent completed in 0.00s
+2026-02-28 04:50:31,705 - src.services.monitoring - INFO - Event 5d618ce7-f1ee-44ff-8317-b9b3c4aa02e8 processed
+2026-02-28 14:10:01,407 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 14:10:01,407 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:10:01,412 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 14:10:01,412 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:10:01,415 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 14:10:01,415 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:10:01,418 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 14:10:01,428 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,428 - sqlalchemy.engine.Engine - INFO - [generated in 0.00065s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,433 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,434 - sqlalchemy.engine.Engine - INFO - [cached since 0.006365s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,436 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,437 - sqlalchemy.engine.Engine - INFO - [cached since 0.00904s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,439 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,439 - sqlalchemy.engine.Engine - INFO - [cached since 0.01152s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,441 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,441 - sqlalchemy.engine.Engine - INFO - [cached since 0.01395s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,443 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:10:01,444 - sqlalchemy.engine.Engine - INFO - [cached since 0.01627s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:10:01,446 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 14:46:25,647 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 14:46:25,647 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:46:25,650 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 14:46:25,651 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:46:25,653 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 14:46:25,653 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:46:25,656 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 14:46:25,663 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,663 - sqlalchemy.engine.Engine - INFO - [generated in 0.00047s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,668 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,668 - sqlalchemy.engine.Engine - INFO - [cached since 0.005381s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,669 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,670 - sqlalchemy.engine.Engine - INFO - [cached since 0.007007s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,671 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,671 - sqlalchemy.engine.Engine - INFO - [cached since 0.008714s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,673 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,673 - sqlalchemy.engine.Engine - INFO - [cached since 0.01025s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,674 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:46:25,674 - sqlalchemy.engine.Engine - INFO - [cached since 0.01184s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:46:25,676 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 14:47:24,261 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 14:47:24,261 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:47:24,265 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 14:47:24,265 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:47:24,268 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 14:47:24,268 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:47:24,270 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 14:47:24,277 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,277 - sqlalchemy.engine.Engine - INFO - [generated in 0.00045s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,282 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,283 - sqlalchemy.engine.Engine - INFO - [cached since 0.00576s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,284 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,285 - sqlalchemy.engine.Engine - INFO - [cached since 0.007914s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,286 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,287 - sqlalchemy.engine.Engine - INFO - [cached since 0.009744s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,288 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,288 - sqlalchemy.engine.Engine - INFO - [cached since 0.01146s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,290 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:47:24,290 - sqlalchemy.engine.Engine - INFO - [cached since 0.01346s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:47:24,292 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-02-28 14:48:33,626 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-02-28 14:48:33,626 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:48:33,630 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-02-28 14:48:33,630 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:48:33,633 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-02-28 14:48:33,633 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-02-28 14:48:33,636 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-02-28 14:48:33,645 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,645 - sqlalchemy.engine.Engine - INFO - [generated in 0.00054s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,652 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,653 - sqlalchemy.engine.Engine - INFO - [cached since 0.008202s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,655 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,655 - sqlalchemy.engine.Engine - INFO - [cached since 0.01037s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,657 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,657 - sqlalchemy.engine.Engine - INFO - [cached since 0.0127s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,660 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,660 - sqlalchemy.engine.Engine - INFO - [cached since 0.01556s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,662 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-02-28 14:48:33,662 - sqlalchemy.engine.Engine - INFO - [cached since 0.01794s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-02-28 14:48:33,665 - sqlalchemy.engine.Engine - INFO - COMMIT
