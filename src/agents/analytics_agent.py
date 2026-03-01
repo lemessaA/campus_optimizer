@@ -8,6 +8,7 @@ from src.database import crud
 from src.services.cache import redis_client
 from src.services.monitoring import logger
 import json
+from src.services.llm_service import LLMService
 
 
 class AnalyticsAgent(BaseAgent):
@@ -15,6 +16,7 @@ class AnalyticsAgent(BaseAgent):
 
     def __init__(self):
         super().__init__("analytics_agent", "analytics")
+        self.llm_service = LLMService()
 
     def setup_tools(self) -> None:
         pass
