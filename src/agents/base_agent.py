@@ -32,21 +32,40 @@ class BaseAgent(ABC):
     async def execute_with_retry(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """Execute agent task with retry logic"""
         start_time = time.time()
-        
+        event_type = input_data.get("event_type") or input_data.get("request_type") or "unknown"
+
         try:
-            logger.info(f"Agent {self.name} started processing", 
+            logger.info(f"Agent {self.name} started processing",
                        extra={"agent_type": self.agent_type, "input": input_data})
-            
+
             result = await self.process(input_data)
-            
-            elapsed = time.time() - start_time
-            logger.info(f"Agent {self.name} completed in {elapsed:.2f}s",
+
+            elapsed_ms = (time.time() - start_time) * 1000
+            logger.info(f"Agent {self.name} completed in {elapsed_ms:.0f}ms",
                        extra={"result_status": result.get("status")})
-            
+
+            # Record metrics for analytics
+            try:
+                from src.services.agent_metrics import record_agent_execution
+                status = result.get("status", "unknown")
+                if result.get("fallback_used"):
+                    status = "fallback"
+                await record_agent_execution(
+                    self.agent_type, status, elapsed_ms, str(event_type)
+                )
+            except Exception:
+                pass
+
             return result
-            
+
         except Exception as e:
+            elapsed_ms = (time.time() - start_time) * 1000
             logger.error(f"Agent {self.name} failed: {str(e)}", exc_info=True)
+            try:
+                from src.services.agent_metrics import record_agent_execution
+                await record_agent_execution(self.agent_type, "error", elapsed_ms, str(event_type))
+            except Exception:
+                pass
             return {
                 "status": "error",
                 "data": None,
