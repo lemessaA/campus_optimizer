@@ -5,12 +5,14 @@ from src.agents.base_agent import BaseAgent
 from src.services.database import get_db
 from src.database import crud
 from src.services.monitoring import logger
+from src.services.llm_service import LLMService
 
 class EquipmentAgent(BaseAgent):
     """Agent responsible for equipment management and booking"""
     
     def __init__(self):
         super().__init__("equipment_agent", "equipment")
+        self.llm_service = LLMService()
     
     def setup_tools(self):
         pass
