@@ -7,6 +7,7 @@ from src.services.database import get_db
 from src.services.cache import redis_client, check_redis_connection
 from src.services.agent_metrics import get_agent_health
 from src.services.monitoring import logger
+from src.services.llm_service import LLMService
 
 
 class HealthAgent(BaseAgent):
@@ -14,6 +15,7 @@ class HealthAgent(BaseAgent):
 
     def __init__(self):
         super().__init__("health_agent", "health")
+        self.llm_service = LLMService()
 
     def setup_tools(self) -> None:
         pass
