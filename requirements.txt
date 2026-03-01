@@ -29,15 +29,13 @@ aioredis
 # AI & Machine Learning
 # ============================================================================
 # LangChain Ecosystem
-langchain
-langchain-community
-langchain-openai
+langchain<1.0
+langchain-community<1.0
 langgraph
 langsmith
 
-# OpenAI
-openai
-tiktoken
+# Groq
+groq
 
 # Embeddings & Vector Stores
 sentence-transformers

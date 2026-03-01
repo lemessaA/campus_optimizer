@@ -113,15 +113,11 @@ class I18nService:
         return self.translations["en"]
     
     def translate_faq(self, faq_id: int, target_lang: str) -> Optional[Dict]:
-        """Translate FAQ to target language"""
-        # This would use translation API in production
-        # For now, return placeholder
-        return {
-            "id": faq_id,
-            "question": f"[{target_lang}] Sample question",
-            "answer": f"[{target_lang}] Sample answer",
-            "translated": True
-        }
+        """Translate FAQ to target language. Returns None when translation is not available.
+        In production, wire this to a translation API (e.g. Google Translate, DeepL) or
+        use pre-stored translations from DB/cache."""
+        # No translation service configured: callers should show original FAQ
+        return None
 
 # Language middleware
 from starlette.middleware.base import BaseHTTPMiddleware

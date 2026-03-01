@@ -7,13 +7,15 @@ from src.core.config import settings
 # Configure logging
 def setup_logging():
     """Setup logging configuration"""
+    handlers = [logging.StreamHandler(sys.stdout)]
+    try:
+        handlers.append(logging.FileHandler("campus_optimizer.log"))
+    except OSError:
+        pass  # Fallback to stdout only if file cannot be created
     logging.basicConfig(
         level=getattr(logging, settings.LOG_LEVEL),
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.StreamHandler(sys.stdout),
-            logging.FileHandler('campus_optimizer.log')
-        ]
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        handlers=handlers,
     )
 
 logger = logging.getLogger(__name__)

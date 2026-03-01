@@ -1209,3 +1209,525 @@ FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace
 WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
 2026-02-28 14:48:33,662 - sqlalchemy.engine.Engine - INFO - [cached since 0.01794s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
 2026-02-28 14:48:33,665 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:40:14,432 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-03-01 15:40:14,432 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:14,437 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-03-01 15:40:14,437 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:14,440 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-03-01 15:40:14,441 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:14,443 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:40:14,454 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,454 - sqlalchemy.engine.Engine - INFO - [generated in 0.00058s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,463 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,463 - sqlalchemy.engine.Engine - INFO - [cached since 0.00992s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,465 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,466 - sqlalchemy.engine.Engine - INFO - [cached since 0.0126s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,469 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,470 - sqlalchemy.engine.Engine - INFO - [cached since 0.01623s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,471 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,472 - sqlalchemy.engine.Engine - INFO - [cached since 0.01838s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,473 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,474 - sqlalchemy.engine.Engine - INFO - [cached since 0.02053s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,476 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,476 - sqlalchemy.engine.Engine - INFO - [cached since 0.02299s ago] ('support_tickets', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,478 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,479 - sqlalchemy.engine.Engine - INFO - [cached since 0.02526s ago] ('ticket_updates', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,481 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:14,481 - sqlalchemy.engine.Engine - INFO - [cached since 0.02766s ago] ('support_feedback', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:14,483 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:40:14,571 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-01 15:40:14,571 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-03-01 15:40:15,574 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:15,761 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:16,045 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:16,230 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:16,455 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:16,659 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:16,968 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:17,274 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 15:40:17,481 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:17,666 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:17,902 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:17,903 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-01 15:40:18,174 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:18,398 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 15:40:18,643 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:18,846 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:20,051 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:20,253 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:20,577 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:20,776 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:21,030 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 15:40:21,260 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 15:40:21,998 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:22,241 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:22,504 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 15:40:56,835 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-03-01 15:40:56,836 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:56,844 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-03-01 15:40:56,844 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:56,850 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-03-01 15:40:56,851 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:40:56,858 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:40:56,876 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,877 - sqlalchemy.engine.Engine - INFO - [generated in 0.00107s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,889 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,889 - sqlalchemy.engine.Engine - INFO - [cached since 0.01361s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,893 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,894 - sqlalchemy.engine.Engine - INFO - [cached since 0.01832s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,898 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,899 - sqlalchemy.engine.Engine - INFO - [cached since 0.0232s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,903 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,904 - sqlalchemy.engine.Engine - INFO - [cached since 0.02821s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,908 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,909 - sqlalchemy.engine.Engine - INFO - [cached since 0.03312s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,913 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,914 - sqlalchemy.engine.Engine - INFO - [cached since 0.03826s ago] ('support_tickets', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,918 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,919 - sqlalchemy.engine.Engine - INFO - [cached since 0.04283s ago] ('ticket_updates', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,922 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:40:56,923 - sqlalchemy.engine.Engine - INFO - [cached since 0.04677s ago] ('support_feedback', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:40:56,926 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:40:57,096 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-01 15:40:57,096 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-03-01 15:40:58,031 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:58,235 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:58,442 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:58,638 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:58,847 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:58,849 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-01 15:40:59,045 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:40:59,258 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:40:59,464 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 15:40:59,689 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:00,117 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:00,341 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:00,605 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:00,925 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 15:41:01,141 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:01,335 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:02,123 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:02,334 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:02,558 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:02,750 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:02,968 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 15:41:03,193 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 15:41:03,773 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:04,075 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:04,370 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 15:41:31,587 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-03-01 15:41:31,587 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:41:31,592 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-03-01 15:41:31,592 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:41:31,597 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-03-01 15:41:31,597 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:41:31,606 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:41:31,622 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,622 - sqlalchemy.engine.Engine - INFO - [generated in 0.00084s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,630 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,631 - sqlalchemy.engine.Engine - INFO - [cached since 0.009209s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,633 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,634 - sqlalchemy.engine.Engine - INFO - [cached since 0.01226s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,637 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,638 - sqlalchemy.engine.Engine - INFO - [cached since 0.01665s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,641 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,641 - sqlalchemy.engine.Engine - INFO - [cached since 0.0197s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,645 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,645 - sqlalchemy.engine.Engine - INFO - [cached since 0.02374s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,648 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,649 - sqlalchemy.engine.Engine - INFO - [cached since 0.02711s ago] ('support_tickets', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,650 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,651 - sqlalchemy.engine.Engine - INFO - [cached since 0.02909s ago] ('ticket_updates', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,652 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:41:31,653 - sqlalchemy.engine.Engine - INFO - [cached since 0.03161s ago] ('support_feedback', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:41:31,657 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:41:31,783 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-01 15:41:31,784 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-03-01 15:41:32,642 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:32,643 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-01 15:41:32,850 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:33,155 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:33,375 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:33,695 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:33,906 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:34,118 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:34,313 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 15:41:34,521 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:34,793 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:35,000 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:35,604 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:35,909 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 15:41:36,246 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:36,561 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:37,795 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:37,985 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:38,274 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:38,464 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:38,677 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 15:41:38,904 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 15:41:39,651 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:41:39,914 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 15:41:40,160 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 15:41:40,324 - src.services.monitoring - INFO - Agent analytics_agent started processing
+2026-03-01 15:41:40,334 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:41:40,424 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id ORDER BY classroom_bookings.date DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:41:40,425 - sqlalchemy.engine.Engine - INFO - [generated in 0.00144s] (500,)
+2026-03-01 15:41:40,453 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:41:40,456 - sqlalchemy.engine.Engine - INFO - [generated in 0.00255s] (200,)
+2026-03-01 15:41:40,482 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:41:40,483 - sqlalchemy.engine.Engine - INFO - [generated in 0.00213s] (datetime.datetime(2026, 2, 28, 12, 41, 40, 472246), 200)
+2026-03-01 15:41:40,496 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:41:40,497 - sqlalchemy.engine.Engine - INFO - [cached since 0.01639s ago] (datetime.datetime(2026, 2, 22, 12, 41, 40, 493545), 500)
+2026-03-01 15:41:40,502 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:41:40,510 - src.services.monitoring - INFO - Agent analytics_agent completed in 187ms
+2026-03-01 15:43:55,996 - sqlalchemy.engine.Engine - INFO - select pg_catalog.version()
+2026-03-01 15:43:55,996 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:43:55,999 - sqlalchemy.engine.Engine - INFO - select current_schema()
+2026-03-01 15:43:56,000 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:43:56,005 - sqlalchemy.engine.Engine - INFO - show standard_conforming_strings
+2026-03-01 15:43:56,006 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2026-03-01 15:43:56,012 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:43:56,022 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,023 - sqlalchemy.engine.Engine - INFO - [generated in 0.00097s] ('classrooms', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,032 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,032 - sqlalchemy.engine.Engine - INFO - [cached since 0.01065s ago] ('courses', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,035 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,036 - sqlalchemy.engine.Engine - INFO - [cached since 0.01462s ago] ('classroom_bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,041 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,044 - sqlalchemy.engine.Engine - INFO - [cached since 0.02173s ago] ('equipment', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,046 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,047 - sqlalchemy.engine.Engine - INFO - [cached since 0.0247s ago] ('bookings', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,048 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,049 - sqlalchemy.engine.Engine - INFO - [cached since 0.02697s ago] ('energy_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,050 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,051 - sqlalchemy.engine.Engine - INFO - [cached since 0.02906s ago] ('support_tickets', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,054 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,055 - sqlalchemy.engine.Engine - INFO - [cached since 0.03304s ago] ('ticket_updates', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,056 - sqlalchemy.engine.Engine - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2026-03-01 15:43:56,058 - sqlalchemy.engine.Engine - INFO - [cached since 0.03558s ago] ('support_feedback', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2026-03-01 15:43:56,061 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:43:56,168 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-01 15:43:56,168 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-03-01 15:43:57,700 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:43:57,920 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:43:58,138 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:43:58,427 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:43:58,685 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:43:58,686 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-01 15:43:58,891 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:43:59,109 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:00,076 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 15:44:00,727 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:00,957 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:01,163 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:01,355 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:01,578 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 15:44:01,783 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:01,974 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:02,444 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:02,749 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:02,962 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:03,200 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:03,409 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 15:44:03,703 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 15:44:04,035 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:44:04,222 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 15:44:04,689 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 15:45:32,687 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:32,728 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id 
+WHERE classroom_bookings.date >= $1::TIMESTAMP WITHOUT TIME ZONE AND classroom_bookings.date < $2::TIMESTAMP WITHOUT TIME ZONE ORDER BY classroom_bookings.date DESC 
+ LIMIT $3::INTEGER
+2026-03-01 15:45:32,729 - sqlalchemy.engine.Engine - INFO - [generated in 0.00112s] (datetime.datetime(2026, 3, 1, 0, 0), datetime.datetime(2026, 3, 2, 0, 0), 500)
+2026-03-01 15:45:32,742 - sqlalchemy.engine.Engine - INFO - SELECT equipment.id, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM equipment 
+WHERE equipment.status = $1::VARCHAR ORDER BY equipment.lab ASC, equipment.name ASC
+2026-03-01 15:45:32,743 - sqlalchemy.engine.Engine - INFO - [generated in 0.00055s] ('available',)
+2026-03-01 15:45:32,751 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:32,751 - sqlalchemy.engine.Engine - INFO - [generated in 0.00048s] (datetime.datetime(2026, 2, 28, 12, 45, 32, 747881), 500)
+2026-03-01 15:45:32,758 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:45:32,776 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:32,778 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id 
+WHERE classroom_bookings.date >= $1::TIMESTAMP WITHOUT TIME ZONE AND classroom_bookings.date < $2::TIMESTAMP WITHOUT TIME ZONE ORDER BY classroom_bookings.date DESC 
+ LIMIT $3::INTEGER
+2026-03-01 15:45:32,778 - sqlalchemy.engine.Engine - INFO - [cached since 0.05048s ago] (datetime.datetime(2026, 3, 1, 0, 0), datetime.datetime(2026, 3, 2, 0, 0), 10)
+2026-03-01 15:45:32,784 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:32,784 - sqlalchemy.engine.Engine - INFO - [generated in 0.00037s] (10,)
+2026-03-01 15:45:32,789 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:32,790 - sqlalchemy.engine.Engine - INFO - [cached since 0.03911s ago] (datetime.datetime(2026, 2, 28, 12, 45, 32, 788664), 10)
+2026-03-01 15:45:32,794 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:45:42,795 - src.services.monitoring - INFO - Agent analytics_agent started processing
+2026-03-01 15:45:42,796 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:42,798 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id ORDER BY classroom_bookings.date DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:42,798 - sqlalchemy.engine.Engine - INFO - [generated in 0.00048s] (500,)
+2026-03-01 15:45:42,803 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:42,803 - sqlalchemy.engine.Engine - INFO - [cached since 10.02s ago] (200,)
+2026-03-01 15:45:42,806 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:42,807 - sqlalchemy.engine.Engine - INFO - [cached since 10.06s ago] (datetime.datetime(2026, 2, 28, 12, 45, 42, 805993), 200)
+2026-03-01 15:45:42,809 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:42,809 - sqlalchemy.engine.Engine - INFO - [cached since 10.06s ago] (datetime.datetime(2026, 2, 22, 12, 45, 42, 808454), 500)
+2026-03-01 15:45:42,811 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:45:42,813 - src.services.monitoring - INFO - Agent analytics_agent completed in 18ms
+2026-03-01 15:45:49,960 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-03-01 15:45:49,961 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-03-01 15:45:50,685 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:50,871 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:51,075 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:51,262 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:51,511 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:51,722 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:52,030 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:52,323 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-01 15:45:52,535 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:52,741 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:53,150 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:53,359 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:53,570 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-01 15:45:53,778 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:54,073 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:54,583 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:54,769 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:54,993 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:55,198 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:55,405 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-01 15:45:55,618 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-01 15:45:55,958 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-01 15:45:56,145 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-01 15:45:56,436 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-01 15:45:56,443 - src.services.monitoring - INFO - Agent analytics_agent started processing
+2026-03-01 15:45:56,444 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:56,445 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id ORDER BY classroom_bookings.date DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:56,445 - sqlalchemy.engine.Engine - INFO - [cached since 13.65s ago] (500,)
+2026-03-01 15:45:56,449 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:56,449 - sqlalchemy.engine.Engine - INFO - [cached since 23.67s ago] (200,)
+2026-03-01 15:45:56,452 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:56,452 - sqlalchemy.engine.Engine - INFO - [cached since 23.7s ago] (datetime.datetime(2026, 2, 22, 12, 45, 56, 451824), 500)
+2026-03-01 15:45:56,457 - sqlalchemy.engine.Engine - INFO - SELECT support_tickets.status, count(support_tickets.id) AS count 
+FROM support_tickets GROUP BY support_tickets.status
+2026-03-01 15:45:56,457 - sqlalchemy.engine.Engine - INFO - [generated in 0.00050s] ()
+2026-03-01 15:45:56,461 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:45:56,463 - src.services.monitoring - INFO - Agent analytics_agent completed in 20ms
+2026-03-01 15:45:56,464 - src.services.monitoring - INFO - Agent health_agent started processing
+2026-03-01 15:45:56,464 - src.services.monitoring - INFO - Agent health_agent completed in 0ms
+2026-03-01 15:45:56,464 - src.services.monitoring - INFO - Agent insights_agent started processing
+2026-03-01 15:45:56,467 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:56,468 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id ORDER BY classroom_bookings.date DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:56,468 - sqlalchemy.engine.Engine - INFO - [cached since 13.67s ago] (500,)
+2026-03-01 15:45:56,471 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:45:56,474 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:56,474 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:45:56,475 - sqlalchemy.engine.Engine - INFO - [cached since 23.72s ago] (datetime.datetime(2026, 2, 22, 12, 45, 56, 473298), 500)
+2026-03-01 15:45:56,481 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-03-01 15:45:56,482 - sqlalchemy.engine.Engine - INFO - [generated in 0.00053s] (datetime.datetime(2026, 1, 30, 12, 45, 56, 477935),)
+2026-03-01 15:45:56,484 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:45:56,486 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:45:56,488 - sqlalchemy.engine.Engine - INFO - SELECT equipment.id, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM equipment ORDER BY equipment.lab ASC, equipment.name ASC
+2026-03-01 15:45:56,488 - sqlalchemy.engine.Engine - INFO - [generated in 0.00068s] ()
+2026-03-01 15:45:56,495 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:45:56,496 - sqlalchemy.engine.Engine - INFO - [cached since 23.71s ago] (200,)
+2026-03-01 15:45:56,499 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:45:57,144 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-01 15:45:57,144 - src.services.monitoring - INFO - Agent insights_agent completed in 680ms
+2026-03-01 15:46:00,729 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:00,731 - sqlalchemy.engine.Engine - INFO - SELECT support_tickets.id, support_tickets.user_id, support_tickets.category, support_tickets.description, support_tickets.priority, support_tickets.status, support_tickets.created_at, support_tickets.updated_at, support_tickets.resolved_at, support_tickets.assigned_to, support_tickets.context 
+FROM support_tickets 
+WHERE support_tickets.user_id = $1::VARCHAR ORDER BY support_tickets.created_at DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:46:00,732 - sqlalchemy.engine.Engine - INFO - [generated in 0.00037s] ('ui_user', 50)
+2026-03-01 15:46:00,736 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:21,645 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:21,646 - sqlalchemy.engine.Engine - INFO - SELECT support_tickets.id, support_tickets.user_id, support_tickets.category, support_tickets.description, support_tickets.priority, support_tickets.status, support_tickets.created_at, support_tickets.updated_at, support_tickets.resolved_at, support_tickets.assigned_to, support_tickets.context 
+FROM support_tickets 
+WHERE support_tickets.user_id = $1::VARCHAR ORDER BY support_tickets.created_at DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:46:21,646 - sqlalchemy.engine.Engine - INFO - [cached since 20.91s ago] ('ui_user', 50)
+2026-03-01 15:46:21,649 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:21,872 - src.services.monitoring - INFO - Agent support_agent started processing
+2026-03-01 15:46:21,872 - src.services.monitoring - INFO - Support query: how do i book a classroom...
+2026-03-01 15:46:22,281 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-01 15:46:22,281 - src.services.monitoring - INFO - Agent support_agent completed in 409ms
+2026-03-01 15:46:22,283 - src.services.monitoring - INFO - Event 8c1d010a-fe5b-4568-81b6-16fad1ef8f08 processed
+2026-03-01 15:46:22,291 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:22,291 - sqlalchemy.engine.Engine - INFO - SELECT support_tickets.id, support_tickets.user_id, support_tickets.category, support_tickets.description, support_tickets.priority, support_tickets.status, support_tickets.created_at, support_tickets.updated_at, support_tickets.resolved_at, support_tickets.assigned_to, support_tickets.context 
+FROM support_tickets 
+WHERE support_tickets.user_id = $1::VARCHAR ORDER BY support_tickets.created_at DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:46:22,292 - sqlalchemy.engine.Engine - INFO - [cached since 21.56s ago] ('ui_user', 50)
+2026-03-01 15:46:22,294 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:23,992 - src.services.monitoring - INFO - Agent support_agent started processing
+2026-03-01 15:46:23,993 - src.services.monitoring - INFO - Support query: how do i book a classroom...
+2026-03-01 15:46:24,200 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-03-01 15:46:24,201 - src.services.monitoring - INFO - Agent support_agent completed in 208ms
+2026-03-01 15:46:24,204 - src.services.monitoring - INFO - Event 98f5a084-0729-422f-98b6-e69072001265 processed
+2026-03-01 15:46:24,216 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:24,217 - sqlalchemy.engine.Engine - INFO - SELECT support_tickets.id, support_tickets.user_id, support_tickets.category, support_tickets.description, support_tickets.priority, support_tickets.status, support_tickets.created_at, support_tickets.updated_at, support_tickets.resolved_at, support_tickets.assigned_to, support_tickets.context 
+FROM support_tickets 
+WHERE support_tickets.user_id = $1::VARCHAR ORDER BY support_tickets.created_at DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:46:24,217 - sqlalchemy.engine.Engine - INFO - [cached since 23.49s ago] ('ui_user', 50)
+2026-03-01 15:46:24,220 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:26,707 - src.services.monitoring - INFO - Agent energy_agent started processing
+2026-03-01 15:46:26,708 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:26,709 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-03-01 15:46:26,709 - sqlalchemy.engine.Engine - INFO - [cached since 30.23s ago] (datetime.datetime(2026, 2, 28, 12, 46, 26, 708193),)
+2026-03-01 15:46:26,711 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE
+2026-03-01 15:46:26,711 - sqlalchemy.engine.Engine - INFO - [cached since 30.23s ago] (datetime.datetime(2026, 1, 30, 12, 46, 26, 710912),)
+2026-03-01 15:46:26,712 - sqlalchemy.engine.Engine - INFO - COMMIT
+2026-03-01 15:46:26,713 - src.services.monitoring - INFO - Agent energy_agent completed in 6ms
+2026-03-01 15:46:26,716 - src.services.monitoring - INFO - Agent notification_agent started processing
+2026-03-01 15:46:26,716 - src.services.monitoring - INFO - Notification sent: EventType.ENERGY_OPTIMIZATION
+2026-03-01 15:46:26,717 - src.services.monitoring - INFO - Agent notification_agent completed in 1ms
+2026-03-01 15:46:26,719 - src.services.monitoring - INFO - Event 0b39f360-2596-4bb0-8d9d-5ae3d24afc2f processed
+2026-03-01 15:46:26,730 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:26,731 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp ASC
+2026-03-01 15:46:26,732 - sqlalchemy.engine.Engine - INFO - [generated in 0.00067s] (datetime.datetime(2026, 2, 28, 12, 46, 26, 729937),)
+2026-03-01 15:46:26,735 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:26,750 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:26,751 - sqlalchemy.engine.Engine - INFO - SELECT energy_logs.id, energy_logs.timestamp, energy_logs.building, energy_logs.consumption, energy_logs.savings_kwh, energy_logs.action 
+FROM energy_logs 
+WHERE energy_logs.timestamp >= $1::TIMESTAMP WITHOUT TIME ZONE ORDER BY energy_logs.timestamp DESC 
+ LIMIT $2::INTEGER
+2026-03-01 15:46:26,751 - sqlalchemy.engine.Engine - INFO - [cached since 54s ago] (datetime.datetime(2026, 2, 28, 12, 46, 26, 749803), 200)
+2026-03-01 15:46:26,754 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:31,641 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:31,642 - sqlalchemy.engine.Engine - INFO - SELECT classroom_bookings.id, classroom_bookings.classroom_id, classroom_bookings.course_id, classroom_bookings.time_slot, classroom_bookings.date, classrooms.id AS id_1, classrooms.name, classrooms.capacity, classrooms.building, classrooms.has_projector, classrooms.has_lab_equipment, courses.id AS id_2, courses.name AS name_1, courses.students_count, courses.schedule_time, courses.duration_minutes, courses.preferred_building 
+FROM classroom_bookings JOIN classrooms ON classrooms.id = classroom_bookings.classroom_id JOIN courses ON courses.id = classroom_bookings.course_id 
+WHERE classroom_bookings.date >= $1::TIMESTAMP WITHOUT TIME ZONE AND classroom_bookings.date < $2::TIMESTAMP WITHOUT TIME ZONE ORDER BY classroom_bookings.date DESC 
+ LIMIT $3::INTEGER
+2026-03-01 15:46:31,643 - sqlalchemy.engine.Engine - INFO - [cached since 58.91s ago] (datetime.datetime(2026, 3, 1, 0, 0), datetime.datetime(2026, 3, 2, 0, 0), 200)
+2026-03-01 15:46:31,647 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:33,075 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:33,075 - sqlalchemy.engine.Engine - INFO - SELECT equipment.id, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM equipment ORDER BY equipment.lab ASC, equipment.name ASC
+2026-03-01 15:46:33,076 - sqlalchemy.engine.Engine - INFO - [cached since 36.59s ago] ()
+2026-03-01 15:46:33,078 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2026-03-01 15:46:33,090 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2026-03-01 15:46:33,091 - sqlalchemy.engine.Engine - INFO - SELECT bookings.id, bookings.equipment_id, bookings.user_id, bookings.start_time, bookings.end_time, equipment.id AS id_1, equipment.name, equipment.lab, equipment.status, equipment.last_maintenance 
+FROM bookings JOIN equipment ON equipment.id = bookings.equipment_id ORDER BY bookings.start_time DESC 
+ LIMIT $1::INTEGER
+2026-03-01 15:46:33,092 - sqlalchemy.engine.Engine - INFO - [cached since 60.31s ago] (50,)
+2026-03-01 15:46:33,095 - sqlalchemy.engine.Engine - INFO - ROLLBACK

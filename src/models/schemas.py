@@ -11,6 +11,9 @@ class EventType(str, Enum):
     CLASSROOM_EMPTY = "classroom_empty"
     TIMETABLE_UPDATED = "timetable_updated"
     ENERGY_OPTIMIZATION = "energy_optimization"
+    ANALYTICS_REPORT = "analytics_report"
+    HEALTH_CHECK = "health_check"
+    INSIGHTS_REPORT = "insights_report"
 
 class CourseCreate(BaseModel):
     name: str = Field(..., min_length=3, max_length=100)
@@ -49,12 +52,93 @@ class Classroom(BaseModel):
     has_projector: bool = False
     has_lab_equipment: bool = False
 
+
+class ScheduleEntry(BaseModel):
+    time: str
+    course_name: str
+    classroom_name: str
+    classroom_capacity: int
+    building: str
+    students_count: int
+    utilization_rate: float
+
 class Equipment(BaseModel):
     id: int
     name: str
     lab: str
     status: str
     last_maintenance: Optional[datetime]
+
+
+class EquipmentBookingEntry(BaseModel):
+    id: int
+    equipment_id: int
+    equipment_name: str
+    user_id: str
+    start_time: datetime
+    end_time: datetime
+
+
+class EnergyLogEntry(BaseModel):
+    timestamp: datetime
+    building: str
+    consumption: float
+    savings_kwh: float
+    action: Optional[str] = None
+
+
+class EnergyConsumptionPoint(BaseModel):
+    timestamp: datetime
+    building: str
+    consumption: float
+
+
+class TicketUpdateEntry(BaseModel):
+    timestamp: datetime
+    message: str
+    type: str
+
+
+class SupportTicketEntry(BaseModel):
+    id: int
+    category: str
+    status: str
+    priority: int
+    created_at: datetime
+    updated_at: datetime
+
+
+class SupportQueryRequest(BaseModel):
+    query: str = Field(..., min_length=1, max_length=2000)
+    user_id: Optional[str] = Field(None, max_length=100)
+
+
+class TicketCategory(str, Enum):
+    SCHEDULING = "scheduling"
+    EQUIPMENT = "equipment"
+    FACILITIES = "facilities"
+    ENERGY = "energy"
+    ACCOUNT = "account"
+    GENERAL = "general"
+
+
+class TicketCreateRequest(BaseModel):
+    user_id: str = Field(..., min_length=1, max_length=100)
+    category: str = Field(..., min_length=1, max_length=50)
+    description: str = Field(..., min_length=1, max_length=5000)
+    priority: Optional[int] = Field(None, ge=1, le=4)
+
+
+class TicketEscalateRequest(BaseModel):
+    reason: str
+    user_id: Optional[str] = None
+
+
+class FAQEntry(BaseModel):
+    id: str
+    question: str
+    answer: str
+    category: str
 
 class AgentResponse(BaseModel):
     status: str
@@ -67,3 +151,13 @@ class HealthCheck(BaseModel):
     database: str
     redis: str
     agents: Dict[str, str]
+
+
+class EventPayload(BaseModel):
+    """Validated payload for POST /events. Extensible per event_type."""
+    report_type: Optional[str] = Field(None, max_length=50)
+    domain: Optional[str] = Field(None, max_length=50)
+    building: Optional[str] = Field(None, max_length=100)
+    # Allow extra fields for event-specific data (e.g. course, booking)
+    class Config:
+        extra = "allow"

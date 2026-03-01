@@ -13,7 +13,7 @@ def with_retry(max_retries: int = 3, backoff_factor: float = 2.0):
                     return await func(*args, **kwargs)
                 except Exception as e:
                     retries += 1
-                    delay = backoff_factor * (2 ** retries)
+                    delay = backoff_factor * (2 ** (retries - 1))
                     logger.error(f"Retry {retries}/{max_retries} failed: {str(e)}")
                     await asyncio.sleep(delay)
             raise Exception(f"Max retries ({max_retries}) exceeded")

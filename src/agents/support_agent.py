@@ -1,13 +1,15 @@
 # src/agents/support_agent.py
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, cast
 from datetime import datetime, timedelta
 from src.agents.base_agent import BaseAgent
 from src.services.database import get_db
 from src.database import crud
 from src.services.cache import redis_client
 from src.services.monitoring import logger
+from src.services.llm_service import LLMService
 import json
 import re
+import hashlib
 
 class SupportAgent(BaseAgent):
     """Agent responsible for customer support and user assistance"""
@@ -23,6 +25,8 @@ class SupportAgent(BaseAgent):
         }
         
         self.faq_database = self._initialize_faq()
+        self.llm_service = LLMService()
+        self._faq_index_hash: Optional[str] = None
         self.ticket_priority_levels = {"low": 1, "medium": 2, "high": 3, "urgent": 4}
     
     def setup_tools(self):
@@ -32,33 +36,64 @@ class SupportAgent(BaseAgent):
     
     def _initialize_faq(self) -> Dict[str, Any]:
         """Initialize FAQ database"""
-        return {
-            "how_to_book_classroom": {
-                "question": "How do I book a classroom?",
-                "answer": "You can book a classroom through the Schedule Optimization page. Click 'Add New Course' and fill in the details. Our scheduling agent will automatically assign the optimal room.",
-                "category": "scheduling"
-            },
-            "equipment_booking_process": {
-                "question": "How do I book lab equipment?",
-                "answer": "Go to the Equipment Booking page, select your equipment, choose date/time, and submit the request. The equipment agent will check availability and confirm your booking.",
-                "category": "equipment"
-            },
-            "report_maintenance": {
-                "question": "How do I report broken equipment?",
-                "answer": "Use the 'Report Issue' form on the Equipment page. Include equipment ID and description of the problem. Our maintenance team will be notified.",
-                "category": "facilities"
-            },
-            "energy_saving_tips": {
-                "question": "How can I help save energy?",
-                "answer": "Turn off lights when leaving rooms, report malfunctioning HVAC, and use equipment during off-peak hours. Check Energy Insights for personalized recommendations.",
-                "category": "energy"
-            },
-            "access_issues": {
-                "question": "I can't access the booking system",
-                "answer": "Clear your browser cache and try again. If issues persist, contact IT support at it-support@campus.edu",
-                "category": "account"
-            }
-        }
+        return {}
+
+
+    async def _load_faqs_from_cache(self) -> Dict[str, Any]:
+        try:
+            if not redis_client:
+                return {}
+            raw = await redis_client.get("support:faqs")
+            if not raw:
+                return {}
+
+            if isinstance(raw, (bytes, bytearray)):
+                raw = raw.decode("utf-8")
+
+            data = json.loads(raw)
+            if isinstance(data, list):
+                return {
+                    str(item.get("id")): {
+                        "question": item.get("question"),
+                        "answer": item.get("answer"),
+                        "category": item.get("category"),
+                    }
+                    for item in data
+                    if item.get("id")
+                }
+            if isinstance(data, dict):
+                return data
+            return {}
+        except Exception:
+            return {}
+
+
+    async def _ensure_faqs_indexed(self, faqs_raw: str, faqs: Dict[str, Any]) -> None:
+        try:
+            if not faqs_raw:
+                return
+            if self.llm_service is None or getattr(self.llm_service, "vector_store", None) is None:
+                return
+
+            digest = hashlib.sha256(faqs_raw.encode("utf-8")).hexdigest()
+            if self._faq_index_hash == digest:
+                return
+
+            faq_list = []
+            for faq_id, faq in faqs.items():
+                faq_list.append(
+                    {
+                        "id": str(faq_id),
+                        "question": faq.get("question"),
+                        "answer": faq.get("answer"),
+                        "category": faq.get("category"),
+                    }
+                )
+
+            await self.llm_service.initialize_faq_store(faq_list)
+            self._faq_index_hash = digest
+        except Exception:
+            return
     
     async def process(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process support requests"""
@@ -80,6 +115,19 @@ class SupportAgent(BaseAgent):
     async def handle_faq_query(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Handle FAQ queries with intelligent matching"""
         try:
+            faqs_raw = ""
+            if redis_client is not None and hasattr(redis_client, "get"):
+                raw = await redis_client.get("support:faqs")
+                if raw:
+                    if isinstance(raw, (bytes, bytearray)):
+                        raw = raw.decode("utf-8")
+                    faqs_raw = str(raw)
+
+            self.faq_database = await self._load_faqs_from_cache()
+            try:
+                await self._ensure_faqs_indexed(faqs_raw, self.faq_database)
+            except Exception:
+                pass
             query = data.get("query", "").lower()
             user_id = data.get("user_id")
             
@@ -128,6 +176,29 @@ class SupportAgent(BaseAgent):
                     },
                     "fallback_used": False
                 }
+
+            if self.llm_service is not None:
+                try:
+                    llm_resp = await self.llm_service.generate_response(
+                        user_id=str(user_id or "anonymous"),
+                        query=data.get("query", ""),
+                    )
+
+                    answer_text = llm_resp.get("answer")
+                    if answer_text and answer_text != "LLM is not configured.":
+                        return {
+                            "status": "success",
+                            "data": {
+                                "answer": answer_text,
+                                "category": "general",
+                                "exact_match": False,
+                                "confidence": llm_resp.get("sentiment", {}).get("score", 0.0),
+                                "source_documents": llm_resp.get("source_documents", []),
+                            },
+                            "fallback_used": False,
+                        }
+                except Exception:
+                    pass
             
             # No match found - create a ticket suggestion
             return {
@@ -152,35 +223,48 @@ class SupportAgent(BaseAgent):
             user_id = data.get("user_id")
             category = data.get("category")
             description = data.get("description")
-            priority = self._determine_priority(description)
+
+            if not user_id or not category or not description:
+                return {
+                    "status": "error",
+                    "error": "user_id, category, and description are required",
+                    "fallback_used": False,
+                }
+
+            user_id_str = str(user_id)
+            category_str = str(category)
+            description_str = str(description)
+
+            priority = self._determine_priority(description_str)
             
             # Get context from other agents
-            context = await self._gather_context(user_id, category)
+            context = await self._gather_context(user_id_str, category_str)
             
             async with get_db() as db:
                 ticket = await crud.create_support_ticket(
                     db,
-                    user_id=user_id,
-                    category=category,
-                    description=description,
+                    user_id=user_id_str,
+                    category=category_str,
+                    description=description_str,
                     priority=priority,
                     context=context
                 )
                 
                 # If urgent, notify appropriate agents
                 if priority >= 3:  # High or urgent
-                    await self._notify_agents(ticket, category)
+                    await self._notify_agents(ticket, category_str)
                 
                 # Store in cache for quick access
-                await redis_client.setex(
-                    f"ticket:{ticket.id}",
-                    3600,
-                    json.dumps({
-                        "id": ticket.id,
-                        "status": "open",
-                        "priority": priority
-                    })
-                )
+                if redis_client is not None and hasattr(redis_client, "setex"):
+                    await redis_client.setex(
+                        f"ticket:{ticket.id}",
+                        3600,
+                        json.dumps({
+                            "id": ticket.id,
+                            "status": "open",
+                            "priority": priority
+                        })
+                    )
                 
                 # Get estimated resolution time
                 eta = self._estimate_resolution_time(priority, category)
@@ -242,15 +326,16 @@ class SupportAgent(BaseAgent):
     async def _notify_agents(self, ticket: Any, category: str):
         """Notify relevant agents about urgent tickets"""
         # Publish to Redis channel for real-time notification
-        await redis_client.publish(
-            "urgent_tickets",
-            json.dumps({
-                "ticket_id": ticket.id,
-                "category": category,
-                "priority": ticket.priority,
-                "timestamp": datetime.utcnow().isoformat()
-            })
-        )
+        if redis_client is not None and hasattr(redis_client, "publish"):
+            await redis_client.publish(
+                "urgent_tickets",
+                json.dumps({
+                    "ticket_id": ticket.id,
+                    "category": category,
+                    "priority": ticket.priority,
+                    "timestamp": datetime.utcnow().isoformat()
+                })
+            )
         
         # In production, this could trigger SMS/email
         logger.warning(f"URGENT TICKET #{ticket.id}: {category} - Priority {ticket.priority}")
@@ -284,19 +369,31 @@ class SupportAgent(BaseAgent):
         """Check status of existing ticket"""
         try:
             ticket_id = data.get("ticket_id")
-            
-            # Check cache first
-            cached = await redis_client.get(f"ticket:{ticket_id}")
-            if cached:
+
+            if ticket_id is None:
                 return {
-                    "status": "success",
-                    "data": json.loads(cached),
+                    "status": "error",
+                    "error": "ticket_id is required",
                     "fallback_used": False,
-                    "cached": True
                 }
             
+            # Check cache first
+            ticket_id_int = int(ticket_id)
+
+            if redis_client is not None and hasattr(redis_client, "get"):
+                cached = await redis_client.get(f"ticket:{ticket_id_int}")
+                if cached:
+                    if isinstance(cached, (bytes, bytearray)):
+                        cached = cached.decode("utf-8")
+                    return {
+                        "status": "success",
+                        "data": json.loads(cached),
+                        "fallback_used": False,
+                        "cached": True
+                    }
+            
             async with get_db() as db:
-                ticket = await crud.get_ticket(db, ticket_id)
+                ticket = await crud.get_ticket(db, ticket_id_int)
                 
                 if not ticket:
                     return {
@@ -315,15 +412,16 @@ class SupportAgent(BaseAgent):
                     "created_at": ticket.created_at.isoformat(),
                     "last_updated": ticket.updated_at.isoformat(),
                     "assigned_to": assigned_agent,
-                    "updates": await self._get_ticket_updates(ticket_id)
+                    "updates": await self._get_ticket_updates(ticket_id_int)
                 }
                 
                 # Cache the result
-                await redis_client.setex(
-                    f"ticket:{ticket_id}",
-                    300,  # 5 minutes cache
-                    json.dumps(response)
-                )
+                if redis_client is not None and hasattr(redis_client, "setex"):
+                    await redis_client.setex(
+                        f"ticket:{ticket_id_int}",
+                        300,  # 5 minutes cache
+                        json.dumps(response)
+                    )
                 
                 return {
                     "status": "success",
@@ -366,9 +464,18 @@ class SupportAgent(BaseAgent):
         try:
             ticket_id = data.get("ticket_id")
             reason = data.get("reason")
+
+            if ticket_id is None or not reason:
+                return {
+                    "status": "error",
+                    "error": "ticket_id and reason are required",
+                    "fallback_used": False,
+                }
             
+            ticket_id_int = int(ticket_id)
+
             async with get_db() as db:
-                ticket = await crud.get_ticket(db, ticket_id)
+                ticket = await crud.get_ticket(db, ticket_id_int)
                 
                 if not ticket:
                     return {
@@ -378,24 +485,26 @@ class SupportAgent(BaseAgent):
                     }
                 
                 # Increase priority
-                new_priority = min(ticket.priority + 1, 4)
-                await crud.update_ticket_priority(db, ticket_id, new_priority)
+                current_priority = int(cast(int, ticket.priority) or 1)
+                new_priority = min(current_priority + 1, 4)
+                await crud.update_ticket_priority(db, ticket_id_int, new_priority)
                 
                 # Notify supervisor
                 await crud.create_ticket_update(
                     db,
-                    ticket_id=ticket_id,
+                    ticket_id=ticket_id_int,
                     message=f"Ticket escalated: {reason}",
                     update_type="escalation"
                 )
                 
                 # Clear cache
-                await redis_client.delete(f"ticket:{ticket_id}")
+                if redis_client is not None and hasattr(redis_client, "delete"):
+                    await redis_client.delete(f"ticket:{ticket_id_int}")
                 
                 return {
                     "status": "success",
                     "data": {
-                        "ticket_id": ticket_id,
+                        "ticket_id": ticket_id_int,
                         "new_priority": new_priority,
                         "message": "Ticket has been escalated"
                     },
@@ -411,11 +520,20 @@ class SupportAgent(BaseAgent):
         try:
             user_id = data.get("user_id")
             current_page = data.get("current_page", "")
+
+            if not user_id:
+                return {
+                    "status": "error",
+                    "error": "user_id is required",
+                    "fallback_used": False,
+                }
+
+            user_id_str = str(user_id)
             
             async with get_db() as db:
                 # Get user's recent activity
-                recent_bookings = await crud.get_user_recent_bookings(db, user_id, days=3)
-                open_tickets = await crud.get_user_open_tickets(db, user_id)
+                recent_bookings = await crud.get_user_recent_bookings(db, user_id_str, days=3)
+                open_tickets = await crud.get_user_open_tickets(db, user_id_str)
                 
                 suggestions = []
                 
@@ -429,7 +547,7 @@ class SupportAgent(BaseAgent):
                 
                 if "schedule" in current_page:
                     # Check for scheduling conflicts
-                    conflicts = await self._check_scheduling_conflicts(db, user_id)
+                    conflicts = await self._check_scheduling_conflicts(db, user_id_str)
                     if conflicts:
                         suggestions.extend(conflicts)
                 

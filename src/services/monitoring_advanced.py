@@ -1,6 +1,8 @@
 # src/services/monitoring_advanced.py
 from prometheus_client import Counter, Histogram, Gauge, generate_latest
 import time
+import uuid
+from collections import deque
 from typing import Dict, Any
 from datetime import datetime, timedelta
 import asyncio
@@ -32,14 +34,17 @@ class MonitoringService:
             "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
             "https://api.pagerduty.com/v2/triggers"  # For critical alerts
         ]
-        
         self.alert_history = []
-    
+        # In-memory sliding window for real error rate and response time (production)
+        self._request_log: deque = deque(maxlen=5000)  # (ts, status, duration)
+        self._agent_failure_times: deque = deque(maxlen=1000)  # timestamps
+        self._urgent_ticket_times: deque = deque(maxlen=500)   # timestamps
+
     async def record_request(self, method: str, endpoint: str, status: int, duration: float):
         """Record HTTP request metrics"""
         request_count.labels(method=method, endpoint=endpoint, status=status).inc()
         request_duration.labels(method=method, endpoint=endpoint).observe(duration)
-        
+        self._request_log.append((time.time(), status, duration))
         # Check for alerts
         await self.check_error_rate(endpoint)
         await self.check_response_time(endpoint)
@@ -47,24 +52,31 @@ class MonitoringService:
     async def record_agent_execution(self, agent_name: str, duration: float, success: bool):
         """Record agent execution metrics"""
         agent_execution_time.labels(agent_name=agent_name).observe(duration)
-        
         if not success:
+            self._agent_failure_times.append(time.time())
             await self.check_agent_failures(agent_name)
-    
+
     async def record_ticket(self, category: str, priority: int):
         """Record support ticket metrics"""
         priority_str = {1: "low", 2: "medium", 3: "high", 4: "urgent"}.get(priority, "unknown")
         ticket_count.labels(category=category, priority=priority_str).inc()
-        
         if priority == 4:  # Urgent
+            self._urgent_ticket_times.append(time.time())
             await self.check_urgent_tickets()
-    
+
+    def _recent_requests(self, window_seconds: int = 300):
+        """Requests in the last window_seconds from in-memory log."""
+        cutoff = time.time() - window_seconds
+        return [(ts, status, dur) for ts, status, dur in self._request_log if ts >= cutoff]
+
     async def check_error_rate(self, endpoint: str):
-        """Check if error rate is too high"""
-        # Query recent metrics
-        # This would query Prometheus in production
-        error_rate = 0.02  # Mock value
-        
+        """Check if error rate is too high (from real request log)."""
+        window = self.alert_thresholds["high_error_rate"]["window"]
+        recent = self._recent_requests(window)
+        if not recent:
+            return
+        errors = sum(1 for _, status, _ in recent if status >= 400)
+        error_rate = errors / len(recent)
         if error_rate > self.alert_thresholds["high_error_rate"]["threshold"]:
             await self.send_alert(
                 level="warning",
@@ -73,11 +85,14 @@ class MonitoringService:
                 metric="error_rate",
                 value=error_rate
             )
-    
+
     async def check_response_time(self, endpoint: str):
-        """Check if response time is too high"""
-        avg_response = 1.5  # Mock value
-        
+        """Check if response time is too high (from real request log)."""
+        window = self.alert_thresholds["high_response_time"]["window"]
+        recent = self._recent_requests(window)
+        if not recent:
+            return
+        avg_response = sum(d for _, _, d in recent) / len(recent)
         if avg_response > self.alert_thresholds["high_response_time"]["threshold"]:
             await self.send_alert(
                 level="warning",
@@ -88,9 +103,10 @@ class MonitoringService:
             )
     
     async def check_agent_failures(self, agent_name: str):
-        """Check for excessive agent failures"""
-        failures = 2  # Mock value
-        
+        """Check for excessive agent failures (from real failure log)."""
+        window = self.alert_thresholds["agent_failures"]["window"]
+        cutoff = time.time() - window
+        failures = sum(1 for ts in self._agent_failure_times if ts >= cutoff)
         if failures >= self.alert_thresholds["agent_failures"]["threshold"]:
             await self.send_alert(
                 level="critical" if failures > 5 else "warning",
@@ -102,9 +118,10 @@ class MonitoringService:
             )
     
     async def check_urgent_tickets(self):
-        """Check for too many urgent tickets"""
-        urgent_count = 3  # Mock value
-        
+        """Check for too many urgent tickets (from real ticket log)."""
+        window = self.alert_thresholds["urgent_tickets"]["window"]
+        cutoff = time.time() - window
+        urgent_count = sum(1 for ts in self._urgent_ticket_times if ts >= cutoff)
         if urgent_count >= self.alert_thresholds["urgent_tickets"]["threshold"]:
             await self.send_alert(
                 level="warning",
@@ -171,6 +188,7 @@ class MonitoringService:
             })
         
         try:
+            import aiohttp
             async with aiohttp.ClientSession() as session:
                 await session.post(
                     self.alert_webhooks[0],
@@ -182,8 +200,9 @@ class MonitoringService:
     
     async def send_pagerduty_alert(self, alert: Dict):
         """Send critical alert to PagerDuty"""
+        routing_key = getattr(settings, "PAGERDUTY_KEY", None) or ""
         payload = {
-            "routing_key": settings.PAGERDUTY_KEY,
+            "routing_key": routing_key,
             "event_action": "trigger",
             "payload": {
                 "summary": alert["title"],
@@ -195,6 +214,7 @@ class MonitoringService:
         }
         
         try:
+            import aiohttp
             async with aiohttp.ClientSession() as session:
                 await session.post(
                     self.alert_webhooks[1],
@@ -205,13 +225,13 @@ class MonitoringService:
             logger.error(f"Failed to send PagerDuty alert: {e}")
     
     async def health_check_advanced(self) -> Dict:
-        """Advanced health check with detailed metrics"""
+        """Advanced health check with detailed metrics (real values)."""
         return {
             "status": "healthy",
             "timestamp": datetime.utcnow().isoformat(),
             "metrics": {
-                "total_requests": request_count._value.get(),
-                "active_connections": active_connections._value.get(),
+                "total_requests": len(self._request_log),
+                "active_connections": active_connections._value.get() if hasattr(active_connections, "_value") else 0,
                 "error_rate": await self.calculate_error_rate(),
                 "avg_response_time": await self.calculate_avg_response_time()
             },
@@ -227,14 +247,19 @@ class MonitoringService:
         }
     
     async def calculate_error_rate(self) -> float:
-        """Calculate current error rate"""
-        # Mock implementation
-        return 0.01
-    
+        """Calculate current error rate from recent requests (last 5 min)."""
+        recent = self._recent_requests(300)
+        if not recent:
+            return 0.0
+        errors = sum(1 for _, status, _ in recent if status >= 400)
+        return errors / len(recent)
+
     async def calculate_avg_response_time(self) -> float:
-        """Calculate average response time"""
-        # Mock implementation
-        return 0.235
+        """Calculate average response time from recent requests (last 5 min)."""
+        recent = self._recent_requests(300)
+        if not recent:
+            return 0.0
+        return sum(d for _, _, d in recent) / len(recent)
     
     async def check_disk_usage(self) -> Dict:
         """Check disk usage"""
@@ -258,7 +283,13 @@ class MonitoringService:
         }
     
     async def check_db_connections(self) -> int:
-        """Check database connection count"""
-        async with get_db() as db:
-            result = await db.execute("SELECT count(*) FROM pg_stat_activity")
-            return result.scalar()
+        """Check database connection count (PostgreSQL)."""
+        try:
+            from src.services.database import get_db
+            from sqlalchemy import text
+            async with get_db() as db:
+                result = await db.execute(text("SELECT count(*) FROM pg_stat_activity"))
+                row = result.scalar()
+                return row[0] if row else 0
+        except Exception:
+            return 0

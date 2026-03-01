@@ -1,6 +1,6 @@
 # src/tests/test_agents.py
 import pytest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, AsyncMock
 from datetime import datetime, timedelta
 from src.agents.scheduling_agent import SchedulingAgent
 from src.agents.equipment_agent import EquipmentAgent
@@ -22,9 +22,15 @@ async def test_scheduling_agent_success():
     }
     
     with patch('src.database.crud.get_available_classrooms') as mock_get:
-        mock_get.return_value = [
-            Mock(id=1, name="Room 101", capacity=60, building="Engineering")
-        ]
+        room = Mock(id=1, name="Room 101", capacity=60, building="Engineering")
+        room.dict.return_value = {
+            "id": 1,
+            "name": "Room 101",
+            "capacity": 60,
+            "building": "Engineering",
+        }
+
+        mock_get.return_value = [room]
         
         with patch('src.database.crud.create_classroom_booking') as mock_create:
             mock_create.return_value = Mock(id=123)
@@ -94,23 +100,31 @@ async def test_equipment_agent_booking():
 @pytest.mark.asyncio
 async def test_energy_agent_optimization():
     """Test energy optimization for empty rooms"""
+    from contextlib import asynccontextmanager
+
     agent = EnergyAgent()
-    
+    mock_db = Mock()
+
     input_data = {
         "event_type": "classroom_empty",
         "building": "Engineering",
         "classroom_id": 1
     }
-    
-    with patch('src.database.crud.get_empty_classrooms') as mock_get:
+
+    @asynccontextmanager
+    async def mock_get_db():
+        yield mock_db
+
+    with patch('src.agents.energy_agent.get_db', mock_get_db), \
+         patch('src.database.crud.get_current_energy_usage', new_callable=AsyncMock, return_value=100.0), \
+         patch('src.database.crud.get_empty_classrooms') as mock_get:
         mock_get.return_value = [
             Mock(id=1, name="Room 101", building="Engineering"),
             Mock(id=2, name="Room 102", building="Engineering")
         ]
-        
-        with patch('src.database.crud.create_energy_log') as mock_log:
+        with patch('src.database.crud.create_energy_log', new_callable=AsyncMock):
             result = await agent.process(input_data)
-            
+
             assert result["status"] == "success"
             assert result["data"]["optimized_rooms"] == 2
             assert result["data"]["total_savings_kwh"] > 0

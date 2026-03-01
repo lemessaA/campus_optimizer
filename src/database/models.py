@@ -18,6 +18,16 @@ class Classroom(Base):
     
     bookings = relationship("ClassroomBooking", back_populates="classroom")
 
+    def dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "capacity": self.capacity,
+            "building": self.building,
+            "has_projector": bool(self.has_projector),
+            "has_lab_equipment": bool(self.has_lab_equipment),
+        }
+
 class Course(Base):
     __tablename__ = "courses"
     

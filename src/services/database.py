@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from src.core.config import settings
 from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 # Convert PostgreSQL URL to async format
 db_url = settings.DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://')
@@ -29,6 +30,15 @@ async def init_db():
 async def close_db():
     """Close database connection"""
     await engine.dispose()
+
+
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    """FastAPI dependency that yields a DB session."""
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
 
 @asynccontextmanager
 async def get_db():

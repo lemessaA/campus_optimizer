@@ -95,7 +95,16 @@ class SupervisorAgent:
         event_type = state["event_type"]
         current = state["current_agent"]
 
-        if event_type in ["support_query", "faq_request", "ticket_creation"]:
+        if event_type in [
+            "support_query",
+            "faq_request",
+            "ticket_creation",
+            "ticket_status",
+            "suggestions",
+            "ticket_escalation",
+        ]:
+            if current == "support":
+                return "end"
             return "support"
 
         if current == "supervisor":
@@ -169,8 +178,9 @@ class SupervisorAgent:
 
     async def support_node(self, state: AgentState) -> AgentState:
         try:
+            request_type = state["input_data"].get("request_type") or state["event_type"]
             result = await self.support_agent.execute_with_retry(
-                {"request_type": state["event_type"], **state["input_data"]}
+                {"request_type": request_type, **state["input_data"]}
             )
             state["agent_results"]["support"] = result
 
