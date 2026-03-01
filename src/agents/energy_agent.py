@@ -7,6 +7,7 @@ from src.services.database import get_db
 from src.database import crud
 from src.services.cache import redis_client
 from src.services.monitoring import logger
+from src.services.llm_service import LLMService
 
 # Default recommendations when no data-driven ones apply
 DEFAULT_RECOMMENDATIONS = [
@@ -54,6 +55,7 @@ class EnergyAgent(BaseAgent):
         super().__init__("energy_agent", "energy")
         self.energy_saving_threshold = 0.3  # 30% saving target
         self.kwh_per_empty_room_hour = 2.5  # Estimated savings per empty room per hour
+        self.llm_service = LLMService()
 
     def setup_tools(self) -> None:
         pass
